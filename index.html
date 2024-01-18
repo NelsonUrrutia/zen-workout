@@ -1,16 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zen Workout</title>
-</head>
-<body>
-    <h1>Zen Workout</h1>
+  </head>
+  <body>
+    <header>
+      <h1>Zen Workout</h1>
+    </header>
 
-    <img src="./src/media/logo.svg" alt="">
+    <main>
+      <article>
+        <section>
+          <h2>Create a new workout</h2>
+          <form>
+            <label for="name">Workout Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              title="Name"
+              tabindex="1"
+              autofocus
+            />
 
+            <fieldset>
+              <legend>Sets</legend>
+              <label for="sets">Number of sets</label>
+              <input
+                type="number"
+                name="sets"
+                id="number-sets"
+                min="1"
+                title="Sets"
+                tabindex="2"
+              />
 
+              <label for="resting-time-sets">Resting time between sets</label>
+              <input
+                type="number"
+                name="resting-time-sets"
+                id="resting-time-sets-minutes"
+                title="Minutes"
+                min="0"
+                max="10"
+                placeholder="00"
+                tabindex="3"
+              />
+              <input
+                type="number"
+                name="resting-time-sets"
+                id="resting-time-sets-seconds"
+                min="0"
+                max="59"
+                title="Seconds"
+                placeholder="00"
+                tabindex="4"
+              />
+            </fieldset>
 
-</body>
+            <fieldset>
+              <legend>Blocks</legend>
+              <label for="blocks">Number of blocks</label>
+              <input
+                type="number"
+                name="blocks"
+                id="blocks"
+                min="1"
+                title="Blocks"
+                tabindex="5"
+              />
+              <label for="resting-time-blocks"
+                >Resting time between blocks</label
+              >
+              <input
+                type="number"
+                name="resting-time-blocks"
+                id="resting-time-blocks-minutes"
+                title="Minutes"
+                placeholder="00"
+                max="5"
+                min="0"
+                tabindex="6"
+              />
+              <input
+                type="number"
+                name="resting-time-blocks"
+                id="resting-time-blocks-seconds"
+                title="Seconds"
+                placeholder="00"
+                max="59"
+                min="0"
+                tabindex="7"
+              />
+
+              <div>
+                <label for="block-exercise">Block exercise </label>
+                <input type="text" name="block-exercise" id="block-exercise" />
+
+                <label for="block-time">Block's working time</label>
+                <input
+                  type="number"
+                  name="block-time"
+                  id="block-time-minutes"
+                  title="Minutes"
+                  placeholder="00"
+                  min="0"
+                  max="10"
+                  tabindex="6"
+                />
+                <input
+                  type="number"
+                  name="block-time"
+                  id="block-time-seconds"
+                  title="Seconds"
+                  placeholder="00"
+                  min="0"
+                  max="59"
+                  tabindex="7"
+                />
+              </div>
+              <div>
+                <label for="block-exercise">Block exercise </label>
+                <input type="text" name="block-exercise" id="block-exercise" />
+
+                <label for="block-time">Block's working time</label>
+                <input
+                  type="number"
+                  name="block-time"
+                  id="block-time-minutes"
+                  title="Minutes"
+                  placeholder="00"
+                  min="0"
+                  max="10"
+                  tabindex="6"
+                />
+                <input
+                  type="number"
+                  name="block-time"
+                  id="block-time-seconds"
+                  title="Seconds"
+                  placeholder="00"
+                  min="0"
+                  max="59"
+                  tabindex="7"
+                />
+              </div>
+            </fieldset>
+
+            <button type="submit" tabindex="8">Save Workout</button>
+            <button type="reset" tabindex="9">Clear</button>
+          </form>
+        </section>
+
+        <section>
+          <h2>Saved Workouts</h2>
+
+          <div>
+            <h3>Wendy's workout | Monday</h3>
+            <p><strong>Set</strong></p>
+            <ul>
+              <li>
+                <strong>Total:</strong>
+                <span>6</span>
+              </li>
+              <li>
+                <strong>Resting time:</strong>
+                <span>1 minute 30 seconds</span>
+              </li>
+            </ul>
+
+            <p><strong>Blocks</strong></p>
+            <ul>
+              <li><strong>Total:</strong><span>5</span></li>
+              <li><strong>Working time:</strong><span>90 seconds</span></li>
+              <li>
+                <strong>Resting time:</strong><span>1 minute 15 seconds</span>
+              </li>
+            </ul>
+
+            <button>Start Workout</button>
+            <button>Delete</button>
+          </div>
+        </section>
+      </article>
+
+      <article>
+        <section>
+          <h2>Active workout control</h2>
+          <h3>Doing: Wendy's workout | Friday</h3>
+        </section>
+
+        <section>
+          <p><strong>1 minute 27 seconds</strong> left</p>
+        </section>
+        <section>
+          <div>
+            <p><strong>Current Exercise:</strong></p>
+            <p>Bicep's curl</p>
+          </div>
+          <div>
+            <p><strong>Current Block:</strong></p>
+            <p>4</p>
+          </div>
+          <div>
+            <p><strong>Blocks to complete:</strong></p>
+            <p>0</p>
+          </div>
+          <div>
+            <p><strong>Completed Blocks:</strong></p>
+            <p>3</p>
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <p><strong>Current Set:</strong></p>
+            <p>2</p>
+          </div>
+          <div>
+            <p><strong>Sets to complete:</strong></p>
+            <p>4</p>
+          </div>
+          <div>
+            <p><strong>Completed Sets:</strong></p>
+            <p>1</p>
+          </div>
+        </section>
+
+        <section>
+          <button>Stop</button>
+          <button>Continue</button>
+          <button>End Workout</button>
+        </section>
+      </article>
+    </main>
+  </body>
 </html>
