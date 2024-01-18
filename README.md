@@ -1,6 +1,25 @@
 # Zen Workout
 ## Sculpt routines with precision. Craft sets, timers, and rests for your fitness sanctuary.
 
+## Objectives
+- Practice HTML architecture
+- Familiarize with Tailwind CSS
+- Get more confident using JavaScript
+
+## Tech Stack
+- HTML 
+- Tailwind CSS
+- JavaScript
+
+
+
+## NOTES
+- Fav icon
+- Metadata
+- Dark/Light theme
+
+
+
 ### Color Palette 
 --baby-powder: #fdfffcff;
 
@@ -17,3 +36,4 @@
 
 - https://shapefactory.co/
 - https://coolors.co/
+
