@@ -11,3 +11,9 @@
 --school-bus-yellow: #f1d302ff;
 
 --black: #020100ff;
+
+
+### Resources
+
+- https://shapefactory.co/
+- https://coolors.co/
