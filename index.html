@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./src/media/logo.svg" />
+    <link rel="stylesheet" href="./src/styles.css" />
     <title>Zen Workout</title>
   </head>
   <body>
@@ -12,15 +14,17 @@
 
     <main>
       <article>
-        <section>
+        <section id="create-workout">
           <h2>Create a new workout</h2>
+          <button id="open-create-workout">Open</button>
+          <button id="close-create-workout">Close</button>
           <form>
-            <label for="name">Workout Name</label>
+            <label for="label">Workout Label</label>
             <input
               type="text"
-              name="name"
-              id="name"
-              title="Name"
+              name="label"
+              id="label"
+              title="Workout Label"
               tabindex="1"
               autofocus
             />
@@ -154,10 +158,10 @@
           </form>
         </section>
 
-        <section>
+        <section id="saved-workouts">
           <h2>Saved Workouts</h2>
-
-          <div>
+          <button>Expand</button>
+          <div class="saved-workout-item">
             <h3>Wendy's workout | Monday</h3>
             <p><strong>Set</strong></p>
             <ul>
@@ -181,60 +185,72 @@
             </ul>
 
             <button>Start Workout</button>
+            <button>View Details</button>
+            <button>Edit</button>
             <button>Delete</button>
           </div>
         </section>
-      </article>
 
-      <article>
-        <section>
-          <h2>Active workout control</h2>
-          <h3>Doing: Wendy's workout | Friday</h3>
-        </section>
+        <section id="active-workout">
+          <div id="active-workout-header">
+            <h2 id="active-workout-label">Wendy's workout | Friday</h2>
+            <p id="active-workout-timer">
+              <strong>1 minute 27 seconds</strong> left
+            </p>
+            <p id="active-workout-exercise"><strong>Bicep's Curl</strong></p>
+            <p id="active-workout-block"><strong>Current Block:</strong> 4</p>
+          </div>
 
-        <section>
-          <p><strong>1 minute 27 seconds</strong> left</p>
-        </section>
-        <section>
           <div>
-            <p><strong>Current Exercise:</strong></p>
-            <p>Bicep's curl</p>
-          </div>
-          <div>
-            <p><strong>Current Block:</strong></p>
-            <p>4</p>
-          </div>
-          <div>
-            <p><strong>Blocks to complete:</strong></p>
-            <p>0</p>
-          </div>
-          <div>
-            <p><strong>Completed Blocks:</strong></p>
-            <p>3</p>
-          </div>
-        </section>
+            <div id="active-workout-block-info">
+              <ul>
+                <li>
+                  <strong>Blocks to complete:</strong>
+                  <span>0</span>
+                </li>
 
-        <section>
-          <div>
-            <p><strong>Current Set:</strong></p>
-            <p>2</p>
+                <li>
+                  <strong>Completed Blocks:</strong>
+                  <span>3</span>
+                </li>
+              </ul>
+            </div>
+            <div id="active-workout-set-info">
+              <ul>
+                <li>
+                  <strong>Current set:</strong>
+                  <span>2</span>
+                </li>
+                <li>
+                  <strong>Sets to complete:</strong>
+                  <span>3</span>
+                </li>
+                <li>
+                  <strong>Completed sets:</strong>
+                  <span>1</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <p><strong>Sets to complete:</strong></p>
-            <p>4</p>
-          </div>
-          <div>
-            <p><strong>Completed Sets:</strong></p>
-            <p>1</p>
-          </div>
-        </section>
 
-        <section>
-          <button>Stop</button>
-          <button>Continue</button>
-          <button>End Workout</button>
+          <div id="active-workout-resting-info">
+            <h3>Resting Time</h3>
+            <p id="active-workout-resting-timer">
+              <strong>30 seconds left</strong>
+            </p>
+            <p id="active-workout-next-exercise">Next exercise: Pull Ups</p>
+          </div>
+
+          <div>
+            <button id="stop-workout">Stop</button>
+            <button id="continue-workout">Continue</button>
+            <button id="end-workout">End Workout</button>
+          </div>
         </section>
       </article>
     </main>
+    <footer>
+      <h3>Zen Workout made by Nelson Urrutia</h3>
+    </footer>
   </body>
 </html>
