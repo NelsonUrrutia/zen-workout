@@ -14,6 +14,7 @@ article {
 #create-workout {
   background-color: aliceblue;
   grid-column: 1 / 6;
+  height: 100%;
 }
 
 #saved-workouts {
@@ -30,4 +31,10 @@ article {
 
 .saved-workout-item {
   background-color: cadetblue;
+}
+
+[data-form-visibility="hidden"] #create-workout-form {
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
 }

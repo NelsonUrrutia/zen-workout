@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./src/media/logo.svg" />
     <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/features/index.js"></script>
     <title>Zen Workout</title>
   </head>
   <body>
@@ -14,11 +15,14 @@
 
     <main>
       <article>
-        <section id="create-workout">
-          <h2>Create a new workout</h2>
-          <button id="open-create-workout">Open</button>
-          <button id="close-create-workout">Close</button>
-          <form>
+        <section id="create-workout" data-form-visibility="visible">
+          <div>
+            <h2>Create a new workout</h2>
+            <button id="open-create-workout">Open</button>
+            <button id="close-create-workout">Close</button>
+          </div>
+
+          <form id="create-workout-form">
             <label for="label">Workout Label</label>
             <input
               type="text"
@@ -35,7 +39,7 @@
               <input
                 type="number"
                 name="sets"
-                id="number-sets"
+                id="sets"
                 min="1"
                 title="Sets"
                 tabindex="2"
@@ -66,95 +70,48 @@
 
             <fieldset>
               <legend>Blocks</legend>
-              <label for="blocks">Number of blocks</label>
-              <input
-                type="number"
-                name="blocks"
-                id="blocks"
-                min="1"
-                title="Blocks"
-                tabindex="5"
-              />
-              <label for="resting-time-blocks"
-                >Resting time between blocks</label
-              >
-              <input
-                type="number"
-                name="resting-time-blocks"
-                id="resting-time-blocks-minutes"
-                title="Minutes"
-                placeholder="00"
-                max="5"
-                min="0"
-                tabindex="6"
-              />
-              <input
-                type="number"
-                name="resting-time-blocks"
-                id="resting-time-blocks-seconds"
-                title="Seconds"
-                placeholder="00"
-                max="59"
-                min="0"
-                tabindex="7"
-              />
 
               <div>
-                <label for="block-exercise">Block exercise </label>
-                <input type="text" name="block-exercise" id="block-exercise" />
-
-                <label for="block-time">Block's working time</label>
+                <label for="blocks">Number of blocks</label>
                 <input
                   type="number"
-                  name="block-time"
-                  id="block-time-minutes"
+                  name="blocks"
+                  id="blocks"
+                  min="1"
+                  title="Blocks"
+                  tabindex="5"
+                />
+                <label for="resting-time-blocks"
+                  >Resting time between blocks</label
+                >
+                <input
+                  type="number"
+                  name="resting-time-blocks"
+                  id="resting-time-blocks-minutes"
                   title="Minutes"
                   placeholder="00"
+                  max="5"
                   min="0"
-                  max="10"
                   tabindex="6"
                 />
                 <input
                   type="number"
-                  name="block-time"
-                  id="block-time-seconds"
+                  name="resting-time-blocks"
+                  id="resting-time-blocks-seconds"
                   title="Seconds"
                   placeholder="00"
-                  min="0"
                   max="59"
+                  min="0"
                   tabindex="7"
                 />
+                <button type="button" id="create-blocks">Create Blocks</button>
               </div>
-              <div>
-                <label for="block-exercise">Block exercise </label>
-                <input type="text" name="block-exercise" id="block-exercise" />
 
-                <label for="block-time">Block's working time</label>
-                <input
-                  type="number"
-                  name="block-time"
-                  id="block-time-minutes"
-                  title="Minutes"
-                  placeholder="00"
-                  min="0"
-                  max="10"
-                  tabindex="6"
-                />
-                <input
-                  type="number"
-                  name="block-time"
-                  id="block-time-seconds"
-                  title="Seconds"
-                  placeholder="00"
-                  min="0"
-                  max="59"
-                  tabindex="7"
-                />
-              </div>
+              <div id="create-workout-blocks"></div>
             </fieldset>
 
-            <button type="submit" tabindex="8">Save Workout</button>
-            <button type="reset" tabindex="9">Clear</button>
+            <button type="submit">Save Workout</button>
+            <button type="reset">Clear</button>
           </form>
         </section>
 
