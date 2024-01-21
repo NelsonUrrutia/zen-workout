@@ -4,7 +4,13 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 
 ## TODO:
 
-- Start with the form javascript
+### FORM
+
+- Save on local storage
+- Refactor code
+- Refactor HTML
+
+- Check for consistency in the naming of inputs
 
 - Start making the layout with tailwind css
 - Accessibility check
@@ -12,26 +18,3 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 - Metadata
 - Dark/Light theme
 - Translation
-
-## Data structure
-
-```JavaScript
-// Workout Object
-{
-    id,
-    label,
-    sets,
-    restingTimeSets,
-    blocks,
-    restingTimeBlocks,
-    blocksSettings:[
-        {
-            id,
-            blockExercise,
-            blockTime
-        }
-    ]
-}
-
-
-```

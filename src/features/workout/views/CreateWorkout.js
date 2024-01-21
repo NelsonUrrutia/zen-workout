@@ -1,14 +1,17 @@
 class CreateWorkout {
-  createWorkoutSection = document.querySelector("#create-workout");
-  openSectionBtn = this.createWorkoutSection.querySelector(
-    "#open-create-workout"
-  );
-  closeSectionBtn = this.createWorkoutSection.querySelector(
-    "#close-create-workout"
-  );
-  form = this.createWorkoutSection.querySelector("#create-workout-form");
-  createBlocksBtn = this.form.querySelector("#create-blocks");
-  workoutBlocks = this.form.querySelector("#create-workout-blocks");
+  constructor() {
+    this.createWorkoutSection = document.querySelector("#create-workout");
+    this.openSectionBtn = this.createWorkoutSection.querySelector(
+      "#open-create-workout"
+    );
+    this.closeSectionBtn = this.createWorkoutSection.querySelector(
+      "#close-create-workout"
+    );
+    this.form = this.createWorkoutSection.querySelector("#create-workout-form");
+    this.createBlocksBtn = this.form.querySelector("#create-blocks");
+    this.workoutBlocks = this.form.querySelector("#create-workout-blocks");
+    this.clearWorkoutForm = this.form.querySelector("#clear-workout-form");
+  }
 
   addHandlerCreateForm(handler) {
     this.form.addEventListener("submit", handler);
@@ -26,8 +29,8 @@ class CreateWorkout {
     this.createBlocksBtn.addEventListener("click", handler);
   }
 
-  submitForm() {
-    alert("Submit form");
+  addEventHandlerClearWorkoutForm(handler) {
+    this.clearWorkoutForm.addEventListener("click", handler);
   }
 
   openSection() {
@@ -45,46 +48,28 @@ class CreateWorkout {
       return;
     }
 
-    const workoutBlocksHTML = [];
-
-    for (let index = 0; index < blocksToCreate; index++) {
-      const indexBasedOne = index + 1;
-      const blockTemplate = `
-        <div>
+    const workoutBlocksHTML = Array.from(
+      { length: blocksToCreate },
+      (_, index) => {
+        const indexBasedOne = index + 1;
+        return `
+        <div class="block">
             <label for="block-exercise-${index}">#${indexBasedOne} Block exercise </label>
             <input type="text" name="block-exercise-${index}" id="block-exercise-${index}" />
-        
-            <label for="block-time-minutes-${index}">Minutes</label>
-            <input
-                type="number"
-                name="block-time-minutes-${index}"
-                id="block-time-minutes-${index}"
-                title="Minutes"
-                placeholder="00"
-                min="0"
-                max="10"
-                tabindex="6"
-            />
-            <label for="block-time-seconds-${index}">Seconds</label>
-            <input
-                type="number"
-                name="block-time-seconds-${index}"
-                id="block-time-seconds-${index}"
-                title="Seconds"
-                placeholder="00"
-                min="0"
-                max="59"
-                tabindex="7"
-            />
         </div>`;
-      workoutBlocksHTML.push(blockTemplate);
-    }
-
-    workoutBlocksHTML.reverse();
-
-    workoutBlocksHTML.forEach((element) =>
-      this.workoutBlocks.insertAdjacentHTML("afterend", element)
+      }
     );
+
+    this.workoutBlocks.innerHTML = workoutBlocksHTML.join("");
+  }
+
+  clearWorkoutBlocks() {
+    this.workoutBlocks.innerHTML = "";
+  }
+
+  submitForm(event) {
+    event.preventDefault();
+    return new FormData(this.form);
   }
 }
 

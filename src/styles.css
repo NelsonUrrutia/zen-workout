@@ -38,3 +38,8 @@ article {
   visibility: hidden;
   overflow: hidden;
 }
+
+.block {
+  display: flex;
+  flex-direction: column;
+}

@@ -23,12 +23,12 @@
           </div>
 
           <form id="create-workout-form">
-            <label for="label">Workout Label</label>
+            <label for="name">Workout name</label>
             <input
               type="text"
-              name="label"
+              name="name"
               id="label"
-              title="Workout Label"
+              title="Workout name"
               tabindex="1"
               autofocus
             />
@@ -45,10 +45,11 @@
                 tabindex="2"
               />
 
-              <label for="resting-time-sets">Resting time between sets</label>
+              <p>Resting time between sets</p>
+              <label for="resting-time-sets-minutes">Minutes</label>
               <input
                 type="number"
-                name="resting-time-sets"
+                name="resting-time-sets-minutes"
                 id="resting-time-sets-minutes"
                 title="Minutes"
                 min="0"
@@ -56,9 +57,10 @@
                 placeholder="00"
                 tabindex="3"
               />
+              <label for="resting-time-sets-seconds">Seconds</label>
               <input
                 type="number"
-                name="resting-time-sets"
+                name="resting-time-sets-seconds"
                 id="resting-time-sets-seconds"
                 min="0"
                 max="59"
@@ -81,22 +83,21 @@
                   title="Blocks"
                   tabindex="5"
                 />
-                <label for="resting-time-blocks"
-                  >Resting time between blocks</label
+
+                <label for="working-time-blocks-seconds"
+                  >Working time in seconds</label
                 >
                 <input
                   type="number"
-                  name="resting-time-blocks"
-                  id="resting-time-blocks-minutes"
-                  title="Minutes"
-                  placeholder="00"
-                  max="5"
-                  min="0"
-                  tabindex="6"
+                  name="working-time-blocks-seconds"
+                  id="working-time-blocks-seconds"
                 />
+                <label for="resting-time-blocks-seconds"
+                  >Resting time in seconds</label
+                >
                 <input
                   type="number"
-                  name="resting-time-blocks"
+                  name="resting-time-blocks-seconds"
                   id="resting-time-blocks-seconds"
                   title="Seconds"
                   placeholder="00"
@@ -111,7 +112,7 @@
             </fieldset>
 
             <button type="submit">Save Workout</button>
-            <button type="reset">Clear</button>
+            <button type="reset" id="clear-workout-form">Clear</button>
           </form>
         </section>
 
