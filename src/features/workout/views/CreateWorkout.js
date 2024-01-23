@@ -71,6 +71,10 @@ class CreateWorkout {
     event.preventDefault();
     return new FormData(this.form);
   }
+
+  resetForm() {
+    this.form.reset();
+  }
 }
 
 export default new CreateWorkout();

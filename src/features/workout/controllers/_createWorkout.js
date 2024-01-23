@@ -45,6 +45,8 @@ const createFormDispatcher = (event) => {
   };
 
   saveWorkout(newWorkout);
+  CreateWorkout.resetForm();
+  CreateWorkout.clearWorkoutBlocks();
 };
 
 const openSectionDispatcher = () => {
