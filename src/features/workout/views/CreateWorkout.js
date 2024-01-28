@@ -1,3 +1,5 @@
+import View from "../../../helpers/View.js";
+
 /**
  * # CreateWorkout
  *
@@ -5,27 +7,37 @@
  * ## and user interface related to creating workouts.
  * @class
  */
-class CreateWorkout {
+class CreateWorkout extends View {
   /**
    * Selecting the section elements
    */
   constructor() {
+    super();
     this.createWorkoutSection = document.querySelector("#create-workout");
-    this.openSectionBtn = this.getElement("#open-create-workout");
-    this.closeSectionBtn = this.getElement("#close-create-workout");
-    this.form = this.getElement("#create-workout-form");
-    this.createBlocksBtn = this.getElement("#create-blocks");
-    this.workoutBlocks = this.getElement("#create-workout-blocks");
-    this.clearWorkoutForm = this.getElement("#clear-workout-form");
-  }
-
-  /**
-   * Gets the DOM element based on the provided selector
-   * @param {string} selector The CSS selector for the desired element
-   * @returns {HTMLElement}  The selected DOM element
-   */
-  getElement(selector) {
-    return this.createWorkoutSection.querySelector(selector);
+    this.openSectionBtn = this.getElement(
+      this.createWorkoutSection,
+      "#open-create-workout"
+    );
+    this.closeSectionBtn = this.getElement(
+      this.createWorkoutSection,
+      "#close-create-workout"
+    );
+    this.form = this.getElement(
+      this.createWorkoutSection,
+      "#create-workout-form"
+    );
+    this.createBlocksBtn = this.getElement(
+      this.createWorkoutSection,
+      "#create-blocks"
+    );
+    this.workoutBlocks = this.getElement(
+      this.createWorkoutSection,
+      "#create-workout-blocks"
+    );
+    this.clearWorkoutForm = this.getElement(
+      this.createWorkoutSection,
+      "#clear-workout-form"
+    );
   }
 
   /**
@@ -86,7 +98,6 @@ class CreateWorkout {
    * Creates workout blocks based o the user input
    */
   createWorkoutBlocks() {
-    debugger;
     // 1. Gets the input value for blocks to create
     const blocksToCreate = +this.form.querySelector("#blocks").value;
     if (!blocksToCreate) {

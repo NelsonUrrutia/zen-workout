@@ -1,4 +1,5 @@
 import CreateWorkout from "../views/CreateWorkout.js";
+import { renderWorkouts } from "./_renderSavedWorkouts.js";
 import { saveWorkout } from "../models/workout.js";
 import { getCurrentDate, getDateNow } from "../../../helpers/helpers.js";
 
@@ -76,6 +77,7 @@ const createFormDispatcher = async (event) => {
 
   try {
     const workoutData = await saveWorkout(newWorkout);
+    renderWorkouts(workoutData);
   } catch (error) {
     console.error(
       `❌ Controller: _createWorkout | createFormDispatcher | ${error}`
