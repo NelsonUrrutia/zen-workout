@@ -8,8 +8,4 @@ export default class View {
   getElement(section, selector) {
     return section.querySelector(selector);
   }
-
-  renderLoadingSpinner() {
-    console.log("TODO render login spinner");
-  }
 }

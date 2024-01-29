@@ -76,6 +76,7 @@ const createFormDispatcher = async (event) => {
   const newWorkout = createNewWorkout(formattedData);
 
   try {
+    CreateWorkout.setInputsLoadingState(true);
     const workoutData = await saveWorkout(newWorkout);
     renderWorkouts(workoutData);
   } catch (error) {
@@ -85,6 +86,7 @@ const createFormDispatcher = async (event) => {
   } finally {
     CreateWorkout.resetForm();
     CreateWorkout.clearWorkoutBlocks();
+    CreateWorkout.setInputsLoadingState(false);
   }
 };
 

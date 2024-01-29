@@ -5,11 +5,12 @@ import View from "../../../helpers/View.js";
  *
  * ## This class is responsible for handling the presentation logic
  * ## and user interface related to creating workouts.
- * @class
+ * @extends View
  */
 class CreateWorkout extends View {
   /**
-   * Selecting the section elements
+   * Creates an instance of CreateWorkout.
+   * Initializes DOM elements for handling the form.
    */
   constructor() {
     super();
@@ -145,6 +146,20 @@ class CreateWorkout extends View {
    */
   resetForm() {
     this.form.reset();
+  }
+
+  /**
+   * Toggles the disabled attribute when on the form submit event
+   * @param {Boolean} isDisabled Flag to toggle the disabled attribute
+   */
+  setInputsLoadingState(isDisabled) {
+    this.form
+      .querySelectorAll(`input`)
+      .forEach((el) => (el.disabled = isDisabled));
+
+    this.form
+      .querySelectorAll("button")
+      .forEach((el) => (el.disabled = isDisabled));
   }
 }
 

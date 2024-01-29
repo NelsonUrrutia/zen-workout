@@ -7,9 +7,6 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 ### Form
 
 1. More validation logic
-2. Loading state
-
-- Disable inputs
 
 ### Saved workouts
 
@@ -20,10 +17,7 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 - Was deleted
 - Was edited
 
-7. Loading state
 8. Documentation
-
-- Loading spinner
 
 ### Alerts
 

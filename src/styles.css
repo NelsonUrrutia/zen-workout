@@ -5,6 +5,7 @@ footer {
 }
 
 article {
+  height: 100vw;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
@@ -18,12 +19,10 @@ article {
 }
 
 #saved-workouts {
+  position: relative;
   background-color: antiquewhite;
   grid-column: 1/6;
   grid-row: 2 / -1;
-}
-
-#saved-workouts-list {
   overflow: auto;
 }
 
@@ -46,4 +45,17 @@ article {
 .block {
   display: flex;
   flex-direction: column;
+}
+
+#loading-spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#loading-spinner[data-show-loading-spinner="false"] {
+  visibility: hidden;
+}
+
+#loading-spinner[data-show-loading-spinner="true"] {
+  visibility: visible;
 }

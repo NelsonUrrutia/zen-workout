@@ -1,6 +1,17 @@
 import View from "../../../helpers/View.js";
 
+/**
+ * # RenderSavedWorkouts
+ *
+ * ## This class is responsible for handling the presentation logic
+ * ## and user interface related to render saved workouts.
+ * @extends View
+ */
 class RenderSavedWorkouts extends View {
+  /**
+   * Creates an instance of RenderSavedWorkouts.
+   * Initializes DOM elements for rendering saved workouts.
+   */
   constructor() {
     super();
     this.renderSavedWorkoutsSection = document.querySelector("#saved-workouts");
@@ -8,8 +19,16 @@ class RenderSavedWorkouts extends View {
       this.renderSavedWorkoutsSection,
       "#saved-workouts-list"
     );
+    this.loadingSpinner = this.getElement(
+      this.renderSavedWorkoutsSection,
+      "#loading-spinner"
+    );
   }
 
+  /**
+   * Renders the list of saved workouts.
+   * @param {Array} workouts - An array of workout objects.
+   */
   renderWorkouts(workouts) {
     const workoutsItems = workouts.map((workout) => {
       return `
@@ -69,6 +88,21 @@ class RenderSavedWorkouts extends View {
     });
 
     this.workoutListContainer.innerHTML = workoutsItems.join("");
+  }
+
+  /**
+   * Sets empty message in the workouts list
+   */
+  setEmptyState() {
+    this.workoutListContainer.innerHTML = `<h3>You don't have any workouts yet. Create a new workout.</h3>`;
+  }
+
+  /**
+   * Toggles visibility of the loader spinner
+   * @param {Boolean} isVisible Flag to toggle visibility of the spinner
+   */
+  setLoadingSpinner(isVisible) {
+    this.loadingSpinner.dataset.showLoadingSpinner = isVisible;
   }
 }
 
