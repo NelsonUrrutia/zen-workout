@@ -115,12 +115,70 @@ class CreateWorkout extends View {
         <div class="block">
             <label for="block-exercise-${index}">#${indexBasedOne} Block exercise </label>
             <input type="text" name="block-exercise-${index}" id="block-exercise-${index}" required />
+            <button data-delete-block>❌</button>
         </div>`;
       }
     );
 
     // Populate the HTML with the created markup
     this.workoutBlocks.innerHTML = workoutBlocksHTML.join("");
+  }
+
+  /**
+   * Populates form with workout data
+   * @param {Object} workoutData The workout data object
+   */
+  populateForm(workoutData) {
+    const {
+      id,
+      date,
+      name,
+      sets,
+      restingTimeSetsMinutes,
+      restingTimeSetsSeconds,
+      blocks,
+      workingTimeBlocksSeconds,
+      restingTimeBlocksSeconds,
+      blockSettings,
+    } = workoutData;
+
+    this.form.querySelector(`#workout-id`).value = id;
+    this.form.querySelector(`#created-at`).value = date;
+    this.form.querySelector(`#name`).value = name;
+    this.form.querySelector(`#sets`).value = sets;
+    this.form.querySelector(`#resting-time-sets-minutes`).value =
+      restingTimeSetsMinutes;
+    this.form.querySelector(`#resting-time-sets-seconds`).value =
+      restingTimeSetsSeconds;
+    this.form.querySelector(`#blocks`).value = blocks;
+    this.form.querySelector(`#working-time-blocks-seconds`).value =
+      workingTimeBlocksSeconds;
+    this.form.querySelector(`#resting-time-blocks-seconds`).value =
+      restingTimeBlocksSeconds;
+    this.createWorkoutsBlocksWithContent(blockSettings);
+  }
+
+  createWorkoutsBlocksWithContent(blockSettings) {
+    this.workoutBlocks.innerHTML = blockSettings
+      .map(({ name, order }) => {
+        return `
+      <div class="block">
+          <label for="block-exercise-${order}">
+            #${+order + 1} Block exercise 
+          </label>
+          <input type="text" value="${name}"  name="block-exercise-${order}" id="block-exercise-${order}" required />
+          <button data-delete-block>❌</button>
+      </div>`;
+      })
+      .join("");
+  }
+
+  scrollFormIntoView() {
+    this.createWorkoutSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
   }
 
   /**

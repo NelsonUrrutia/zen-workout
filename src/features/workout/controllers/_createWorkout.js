@@ -25,6 +25,8 @@ const createBlocksDispatcher = () => {
 
 const extractFormData = (formData) => {
   const {
+    "workout-id": workoutId,
+    "created-at": date,
     name,
     sets,
     blocks,
@@ -42,6 +44,8 @@ const extractFormData = (formData) => {
   });
 
   return {
+    ...(workoutId && { id: +workoutId }),
+    ...(date && { date }),
     name,
     sets,
     restingTimeSetsMinutes,
@@ -59,9 +63,10 @@ const extractFormData = (formData) => {
  * @returns {Object} New workout object
  */
 const createNewWorkout = (formData) => {
+  const { id, date } = formData;
   return {
-    id: getDateNow(),
-    date: getCurrentDate(),
+    id: id || getDateNow(),
+    date: date || getCurrentDate(),
     ...formData,
   };
 };
@@ -88,6 +93,17 @@ const createFormDispatcher = async (event) => {
     CreateWorkout.clearWorkoutBlocks();
     CreateWorkout.setInputsLoadingState(false);
   }
+};
+
+/**
+ * Dispatches actions to populate a form with workout data
+ * and scroll the form into view.
+ *
+ * @param {Object} workoutData - The workout data to be used for populating the form.
+ */
+export const populateFormDispatcher = (workoutData) => {
+  CreateWorkout.populateForm(workoutData);
+  CreateWorkout.scrollFormIntoView();
 };
 
 /**

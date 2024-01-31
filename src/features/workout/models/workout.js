@@ -193,7 +193,10 @@ export function saveWorkout(newWorkout) {
         ? parseJSON(rawWorkoutsData)
         : [];
 
-      const newWorkoutsData = [...parsedWorkoutsData, newWorkout];
+      const newWorkoutsData = buildNewWorkoutsData(
+        parsedWorkoutsData,
+        newWorkout
+      );
 
       localStorage.setItem("workoutsData", stringifyJSON(newWorkoutsData));
       resolve(newWorkoutsData);
@@ -220,6 +223,22 @@ export function getWorkouts() {
 }
 
 /**
+ * Get workout by id
+ * @param {Number} workoutId Workout id
+ * @returns  {Promise<Array>} A promise that resolves with the workout object
+ */
+export async function getWorkout(workoutId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const workouts = await getWorkouts();
+      resolve(workouts.find((workout) => workout.id === workoutId));
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+/**
  * Loads testing data to the local storage
  */
 export function loadTestingData() {
@@ -230,4 +249,21 @@ export function loadTestingData() {
   } catch (error) {
     console.log("Error to load testing data");
   }
+}
+
+/**
+ * Builds a new array of workout data by either adding a new workout or replacing an existing one based on its 'id'.
+ *
+ * @param {Array} parsedWorkoutsData - The original array of parsed workout data.
+ * @param {Object} newWorkout - The new workout object to be added or used for replacement.
+ * @returns {Array} - A new array of workout data with the updated information.
+ */
+function buildNewWorkoutsData(parsedWorkoutsData, newWorkout) {
+  const workoutHasId = newWorkout.hasOwnProperty("id");
+  if (!workoutHasId) return [...parsedWorkoutsData, newWorkout];
+
+  const filteredParsedWorkoutsData = parsedWorkoutsData.filter(
+    (workout) => workout.id !== newWorkout.id
+  );
+  return [...filteredParsedWorkoutsData, newWorkout];
 }

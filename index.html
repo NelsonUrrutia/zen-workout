@@ -26,7 +26,7 @@
             <input
               type="text"
               name="name"
-              id="label"
+              id="name"
               title="Workout name"
               tabindex="1"
               autofocus
@@ -113,7 +113,8 @@
 
               <div id="create-workout-blocks"></div>
             </fieldset>
-
+            <input type="hidden" name="workout-id" id="workout-id" />
+            <input type="hidden" name="created-at" id="created-at" />
             <button type="submit">Save Workout</button>
             <button type="reset" id="clear-workout-form">Clear</button>
           </form>

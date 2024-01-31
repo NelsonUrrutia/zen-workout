@@ -26,13 +26,23 @@ class RenderSavedWorkouts extends View {
   }
 
   /**
+   * Adds an event handler to the saved workout section
+   * @param {Function} handler Function to handle the form submission event
+   */
+  addHandlerRenderSavedWorkoutsSection(handler) {
+    this.renderSavedWorkoutsSection.addEventListener("click", handler);
+  }
+
+  /**
    * Renders the list of saved workouts.
    * @param {Array} workouts - An array of workout objects.
    */
   renderWorkouts(workouts) {
     const workoutsItems = workouts.map((workout) => {
       return `
-        <div data-workout-item-id="${workout.id}">
+        <div 
+          class="saved-workout-item"
+          data-workout-item-id="${workout.id}">
           <div>
             <h3>${workout.name}</h3>
             <p>Created at: ${workout.date}</p>
