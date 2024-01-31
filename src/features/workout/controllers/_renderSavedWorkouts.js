@@ -1,4 +1,9 @@
-import { getWorkout, getWorkouts, loadTestingData } from "../models/workout.js";
+import {
+  deleteWorkoutById,
+  getWorkout,
+  getWorkouts,
+  loadTestingData,
+} from "../models/workout.js";
 import RenderSavedWorkouts from "../views/RenderSavedWorkouts.js";
 import { populateFormDispatcher } from "./_createWorkout.js";
 
@@ -73,9 +78,13 @@ async function editWorkout(workoutItemId) {
  *
  * @param {number} workoutItemId - The unique identifier of the workout item.
  */
-function deleteWorkout(workoutItemId) {
+async function deleteWorkout(workoutItemId) {
   try {
-    console.log("Delete workout", workoutItemId);
+    const { name } = await getWorkout(+workoutItemId);
+    const deleteWorkout = RenderSavedWorkouts.deleteWorkoutConfirmation(name);
+    if (!deleteWorkout) return;
+    const updatedWorkoutsData = await deleteWorkoutById(+workoutItemId);
+    renderWorkouts(updatedWorkoutsData);
   } catch (error) {
     console.error(`${error}`);
   }

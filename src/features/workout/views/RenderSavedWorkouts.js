@@ -38,6 +38,11 @@ class RenderSavedWorkouts extends View {
    * @param {Array} workouts - An array of workout objects.
    */
   renderWorkouts(workouts) {
+    if (!workouts.length) {
+      this.setEmptyState();
+      return;
+    }
+
     const workoutsItems = workouts.map((workout) => {
       return `
         <div 
@@ -98,6 +103,10 @@ class RenderSavedWorkouts extends View {
     });
 
     this.workoutListContainer.innerHTML = workoutsItems.join("");
+  }
+
+  deleteWorkoutConfirmation(workoutName) {
+    return confirm(`Delete this workout: ${workoutName}`);
   }
 
   /**

@@ -227,11 +227,31 @@ export function getWorkouts() {
  * @param {Number} workoutId Workout id
  * @returns  {Promise<Array>} A promise that resolves with the workout object
  */
-export async function getWorkout(workoutId) {
+export function getWorkout(workoutId) {
   return new Promise(async (resolve, reject) => {
     try {
       const workouts = await getWorkouts();
       resolve(workouts.find((workout) => workout.id === workoutId));
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+/**
+ * Deletes a workout with the specified ID from the stored workouts data.
+ *
+ * @param {number} workoutId - The unique identifier of the workout to be deleted.
+ * @returns {Promise<Array>} - A promise that resolves with the updated array of workouts after deletion,
+ * or rejects with an error if there's an issue during the deletion process.
+ */
+export function deleteWorkoutById(workoutId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const workouts = await getWorkouts();
+      const filteredWorkouts = workouts.filter((item) => item.id !== workoutId);
+      localStorage.setItem("workoutsData", stringifyJSON(filteredWorkouts));
+      resolve(filteredWorkouts);
     } catch (error) {
       reject(error);
     }
