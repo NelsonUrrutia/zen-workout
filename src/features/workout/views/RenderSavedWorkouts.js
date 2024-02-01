@@ -93,7 +93,7 @@ class RenderSavedWorkouts extends View {
             </ul>
           </div>
           <div>  
-              <button data-start-workout>Start Workout</button>
+              <button data-select-workout>Select Workout</button>
               <button data-edit-workout>Edit</button>
               <button data-delete-workout>Delete</button>
           </div>

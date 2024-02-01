@@ -124,66 +124,55 @@
           <div>
             <h2>Saved Workouts</h2>
             <div id="loading-spinner" data-show-loading-spinner="true">
-              <img src="./src//media/ball-triangle.svg" alt="Loading spinner" />
+              <img
+                src="./src//media/ball-triangle.svg"
+                width="60"
+                height="60"
+                alt="Loading spinner"
+              />
             </div>
           </div>
           <div id="saved-workouts-list"></div>
         </section>
 
-        <section id="active-workout">
-          <div id="active-workout-header">
-            <h2 id="active-workout-label">Wendy's workout | Friday</h2>
-            <p id="active-workout-timer">
-              <strong>1 minute 27 seconds</strong> left
-            </p>
-            <p id="active-workout-exercise"><strong>Bicep's Curl</strong></p>
-            <p id="active-workout-block"><strong>Current Block:</strong> 4</p>
-          </div>
-
-          <div>
-            <div id="active-workout-block-info">
-              <ul>
-                <li>
-                  <strong>Blocks to complete:</strong>
-                  <span>0</span>
-                </li>
-
-                <li>
-                  <strong>Completed Blocks:</strong>
-                  <span>3</span>
-                </li>
-              </ul>
+        <section id="active-workout" data-loading-section="false">
+          <div class="active-workout-header">
+            <div id="workout-timer" data-is-active="false">
+              <h3>Workout Timer</h3>
+              <p>00:00</p>
             </div>
-            <div id="active-workout-set-info">
-              <ul>
-                <li>
-                  <strong>Current set:</strong>
-                  <span>2</span>
-                </li>
-                <li>
-                  <strong>Sets to complete:</strong>
-                  <span>3</span>
-                </li>
-                <li>
-                  <strong>Completed sets:</strong>
-                  <span>1</span>
-                </li>
-              </ul>
+            <div id="resting-timer" data-is-active="false">
+              <h3>Resting Timer</h3>
+              <p>00:00</p>
             </div>
           </div>
 
-          <div id="active-workout-resting-info">
-            <h3>Resting Time</h3>
-            <p id="active-workout-resting-timer">
-              <strong>30 seconds left</strong>
-            </p>
-            <p id="active-workout-next-exercise">Next exercise: Pull Ups</p>
+          <div class="active-workout-actions">
+            <button id="start-workout" disabled>Start Workout</button>
+            <button id="pause-workout" disabled>Pause Workout</button>
+            <button id="continue-workout" disabled>Continue Workout</button>
+            <button id="end-workout" disabled>End Workout</button>
           </div>
 
-          <div>
-            <button id="stop-workout">Stop</button>
-            <button id="continue-workout">Continue</button>
-            <button id="end-workout">End Workout</button>
+          <div id="active-workout-info">
+            <!-- FIXME: Generate this markup with JavaScript -->
+            <div>
+              <p style="font-size: x-large">Exercise</p>
+              <small> <strong>Next:</strong>Next Exercise</small>
+            </div>
+            <div>
+              <p>Blocks: 0/0</p>
+              <p>Sets: 0/0</p>
+            </div>
+          </div>
+
+          <div id="active-workout-loading">
+            <img
+              src="./src/media/ball-triangle-color.svg"
+              alt="Loading Spinner"
+              width="200"
+              height="200"
+            />
           </div>
         </section>
       </article>

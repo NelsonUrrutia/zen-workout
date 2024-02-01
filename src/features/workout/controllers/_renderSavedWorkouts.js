@@ -44,7 +44,7 @@ const sectionClickDispatcher = (event) => {
   const workoutItemId =
     event.target.closest(`.saved-workout-item`)?.dataset.workoutItemId;
 
-  if (clickedElement.closest(`[data-start-workout]`))
+  if (clickedElement.closest(`[data-select-workout]`))
     startWorkout(workoutItemId);
 
   if (clickedElement.closest(`[data-edit-workout]`)) editWorkout(workoutItemId);
@@ -54,7 +54,7 @@ const sectionClickDispatcher = (event) => {
 };
 
 function startWorkout(workoutItemId) {
-  console.log("Start Workout", workoutItemId);
+  console.log("Select Workout", workoutItemId);
 }
 
 /**
