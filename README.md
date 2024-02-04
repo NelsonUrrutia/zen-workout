@@ -15,6 +15,7 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 9. Sort by: created date, # sets, # blocks, A-Z, Z-A
 10. Render by default based on date created
 11. Search by name
+12. Clear all
 
 ### Alerts
 

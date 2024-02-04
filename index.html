@@ -137,13 +137,18 @@
 
         <section id="active-workout" data-loading-section="false">
           <div class="active-workout-header">
-            <div id="workout-timer" data-is-active="false">
+            <h2 id="active-workout-name"></h2>
+            <div>
               <h3>Workout Timer</h3>
-              <p>00:00</p>
+              <div id="workout-timer" data-is-active="false">
+                <p>00:00</p>
+              </div>
             </div>
-            <div id="resting-timer" data-is-active="false">
+            <div>
               <h3>Resting Timer</h3>
-              <p>00:00</p>
+              <div id="resting-timer" data-is-active="false">
+                <p>00:00</p>
+              </div>
             </div>
           </div>
 
@@ -155,14 +160,15 @@
           </div>
 
           <div id="active-workout-info">
-            <!-- FIXME: Generate this markup with JavaScript -->
             <div>
-              <p style="font-size: x-large">Exercise</p>
-              <small> <strong>Next:</strong>Next Exercise</small>
+              <p style="font-size: x-large" id="active-exercise">Exercise</p>
+              <small id="next-exercise">
+                <strong>Next:</strong>Next Exercise</small
+              >
             </div>
             <div>
-              <p>Blocks: 0/0</p>
-              <p>Sets: 0/0</p>
+              <p id="block-counter">Blocks: 0/0</p>
+              <p id="set-counter">Sets: 0/0</p>
             </div>
           </div>
 
