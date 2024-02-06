@@ -6,16 +6,16 @@ import { getCurrentDate, getDateNow } from "../../../helpers/helpers.js";
 /**
  * Clears workout blocks
  */
-const clearWorkoutDispatcher = () => {
+function clearWorkoutDispatcher() {
   CreateWorkout.clearWorkoutBlocks();
-};
+}
 
 /**
  * Creates workout blocks
  */
-const createBlocksDispatcher = () => {
+function createBlocksDispatcher() {
   CreateWorkout.createWorkoutBlocks();
-};
+}
 
 /**
  * Pars and format the form data object
@@ -23,7 +23,7 @@ const createBlocksDispatcher = () => {
  * @returns {Object} Parsed and formatted form data
  */
 
-const extractFormData = (formData) => {
+function extractFormData(formData) {
   const {
     "workout-id": workoutId,
     "created-at": date,
@@ -55,27 +55,27 @@ const extractFormData = (formData) => {
     restingTimeBlocksSeconds,
     blockSettings,
   };
-};
+}
 
 /**
  * Creates a new workout object with additional metadata
  * @param {Object} formData Extracted form data from the CreateWorkout view
  * @returns {Object} New workout object
  */
-const createNewWorkout = (formData) => {
+function createNewWorkout(formData) {
   const { id, date } = formData;
   return {
     id: id || getDateNow(),
     date: date || getCurrentDate(),
     ...formData,
   };
-};
+}
 
 /**
  * Handles form submission
  * @param {Event} event Form submission event
  */
-const createFormDispatcher = async (event) => {
+async function createFormDispatcher(event) {
   const formData = CreateWorkout.submitForm(event);
   const formattedData = extractFormData(formData);
   const newWorkout = createNewWorkout(formattedData);
@@ -93,7 +93,7 @@ const createFormDispatcher = async (event) => {
     CreateWorkout.clearWorkoutBlocks();
     CreateWorkout.setInputsLoadingState(false);
   }
-};
+}
 
 /**
  * Dispatches actions to populate a form with workout data
@@ -101,32 +101,32 @@ const createFormDispatcher = async (event) => {
  *
  * @param {Object} workoutData - The workout data to be used for populating the form.
  */
-export const populateFormDispatcher = (workoutData) => {
+export function populateFormDispatcher(workoutData) {
   CreateWorkout.populateForm(workoutData);
   CreateWorkout.scrollFormIntoView();
-};
+}
 
 /**
  * Opens the section
  */
-const openSectionDispatcher = () => {
+function openSectionDispatcher() {
   CreateWorkout.openSection();
-};
+}
 
 /**
  * Close the section
  */
-const closeSectionDispatcher = () => {
+function closeSectionDispatcher() {
   CreateWorkout.closeSection();
-};
+}
 
 /**
  * Initializes event handlers for the CreateWorkouts module
  */
-export const initCreateWorkouts = function () {
+export default function initCreateWorkoutModule() {
   CreateWorkout.addHandlerOpenSection(openSectionDispatcher);
   CreateWorkout.addEventHandlerCloseSection(closeSectionDispatcher);
   CreateWorkout.addHandlerCreateForm(createFormDispatcher);
   CreateWorkout.addEventHandlerCreateBlocksBtn(createBlocksDispatcher);
   CreateWorkout.addEventHandlerClearWorkoutForm(clearWorkoutDispatcher);
-};
+}

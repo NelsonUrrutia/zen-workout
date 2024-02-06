@@ -206,6 +206,10 @@ export function saveWorkout(newWorkout) {
   });
 }
 
+export function saveActiveWorkoutInSession(workout) {
+  sessionStorage.setItem("activeWorkoutSession", stringifyJSON(workout));
+}
+
 /**
  * Get saved workouts from local storage
  * @returns {Promise<Array>} A promise that resolves with the array of saved workouts

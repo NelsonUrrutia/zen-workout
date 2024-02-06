@@ -5,20 +5,21 @@ import {
   loadTestingData,
 } from "../models/workout.js";
 import RenderSavedWorkouts from "../views/RenderSavedWorkouts.js";
+import { loadActiveWorkout } from "./_activeWorkout.js";
 import { populateFormDispatcher } from "./_createWorkout.js";
 
 /**
  * Renders the workouts using the provided workout data.
  * @param {Array} workoutData - Array of workout data to render.
  */
-export const renderWorkouts = (workoutData) => {
+export function renderWorkouts(workoutData) {
   RenderSavedWorkouts.renderWorkouts(workoutData);
-};
+}
 
 /**
  * Renders saved workouts on the first load
  */
-const firstLoadWorkoutsRender = async () => {
+async function firstLoadWorkoutsRender() {
   try {
     RenderSavedWorkouts.setLoadingSpinner(true);
     const data = await getWorkouts();
@@ -26,20 +27,19 @@ const firstLoadWorkoutsRender = async () => {
       RenderSavedWorkouts.setEmptyState();
       return;
     }
-
     renderWorkouts(data);
   } catch (error) {
     console.error("Failed to load saved workouts");
   } finally {
     RenderSavedWorkouts.setLoadingSpinner(false);
   }
-};
+}
 
 /**
  * Section click event dispatcher
  * @param {Event} event Click event
  */
-const sectionClickDispatcher = (event) => {
+function sectionClickDispatcher(event) {
   const clickedElement = event.target;
   const workoutItemId =
     event.target.closest(`.saved-workout-item`)?.dataset.workoutItemId;
@@ -51,10 +51,11 @@ const sectionClickDispatcher = (event) => {
 
   if (clickedElement.closest(`[data-delete-workout]`))
     deleteWorkout(workoutItemId);
-};
+}
 
-function startWorkout(workoutItemId) {
-  console.log("Select Workout", workoutItemId);
+async function startWorkout(workoutItemId) {
+  const workout = await getWorkout(+workoutItemId);
+  loadActiveWorkout(workout);
 }
 
 /**
@@ -93,7 +94,7 @@ async function deleteWorkout(workoutItemId) {
 /**
  * Initializes methods and event handlers for the RenderSavedWorkouts module
  */
-export function initRenderSavedWorkouts() {
+export default function initRenderSavedWorkoutsModule() {
   loadTestingData();
   firstLoadWorkoutsRender();
   RenderSavedWorkouts.addHandlerRenderSavedWorkoutsSection(

@@ -4,7 +4,10 @@ class ActiveWorkout extends View {
   constructor() {
     super();
     this.section = document.querySelector("#active-workout");
-    this.activeWorkoutName = document.querySelector("#active-workout-name");
+    this.activeWorkoutName = this.getElement(
+      this.section,
+      "#active-workout-name"
+    );
     this.workoutTimer = this.getElement(this.section, "#workout-timer");
     this.restingTimer = this.getElement(this.section, "#resting-timer");
     this.startWorkoutBtn = this.getElement(this.section, "#start-workout");
@@ -20,19 +23,8 @@ class ActiveWorkout extends View {
     this.setCounter = this.getElement(this.section, "#set-counter");
   }
 
-  populateWorkoutData({
-    name,
-    sets,
-    restingTimeSetsMinutes,
-    restingTimeSetsSeconds,
-    blocks,
-    workingTimeBlockSeconds,
-  }) {
-    this.setActiveWorkoutName(name);
-    this.updateWorkoutTimer(workingTimeBlockSeconds);
-    this.updateRestingTimer(restingTimeSetsMinutes, restingTimeSetsSeconds);
-    this.updateBlockCounter(0, blocks);
-    this.updateSetCounter(0, sets);
+  addHandlerStartWorkout(handler) {
+    this.startWorkoutBtn.addEventListener("click", handler);
   }
 
   setLoadingState(flag) {
@@ -43,12 +35,16 @@ class ActiveWorkout extends View {
     element.dataset.isActive = flag;
   }
 
+  setDisableState(element, flag) {
+    element.disabled = flag;
+  }
+
   setActiveWorkoutName(name) {
-    this.activeWorkoutName.name.innerHTML = name;
+    this.activeWorkoutName.innerHTML = name;
   }
 
   updateWorkoutTimer(time) {
-    this.workoutTimer.innerHTML = `${time}`;
+    this.workoutTimer.innerHTML = `${time} seconds`;
   }
 
   updateRestingTimer(minutes, seconds) {
@@ -57,11 +53,11 @@ class ActiveWorkout extends View {
   }
 
   updateBlockCounter(counter, total) {
-    this.blockCounter.innerHTML = `${counter}/${total}`;
+    this.blockCounter.innerHTML = `Blocks: ${counter}/${total}`;
   }
 
   updateSetCounter(counter, total) {
-    this.setCounter.innerHTML = `${counter}/${total}}`;
+    this.setCounter.innerHTML = `Sets: ${counter}/${total}`;
   }
 
   updateActiveExercise(exercise) {
@@ -69,6 +65,8 @@ class ActiveWorkout extends View {
   }
 
   updateNextExercise(exercise) {
-    this.nextExercise.innerHTML = `${exercise}`;
+    this.nextExercise.innerHTML = `<strong>Next:</strong> ${exercise}`;
   }
 }
+
+export default new ActiveWorkout();
