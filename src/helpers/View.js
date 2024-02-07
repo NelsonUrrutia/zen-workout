@@ -8,4 +8,19 @@ export default class View {
   getElement(section, selector) {
     return section.querySelector(selector);
   }
+
+  /**
+   *
+   * @param {HTMLElement} section Element to scroll in to view
+   * @param {String}  behavior `smooth, instant, auto`
+   * @param {String} block `start, center, nearest, end`
+   * @param {*} inline `start, center, nearest, end`
+   */
+  scrollIntoView(section, behavior, block, inline) {
+    section.scrollIntoView({
+      behavior,
+      block,
+      inline,
+    });
+  }
 }

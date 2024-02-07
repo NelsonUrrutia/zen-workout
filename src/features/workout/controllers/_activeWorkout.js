@@ -32,6 +32,12 @@ export function loadActiveWorkout(workout) {
     console.log(error);
   } finally {
     ActiveWorkout.setLoadingState(false);
+    ActiveWorkout.scrollIntoView(
+      ActiveWorkout.section,
+      "smooth",
+      "start",
+      "start"
+    );
   }
 }
 

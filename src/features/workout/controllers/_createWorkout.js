@@ -103,7 +103,12 @@ async function createFormDispatcher(event) {
  */
 export function populateFormDispatcher(workoutData) {
   CreateWorkout.populateForm(workoutData);
-  CreateWorkout.scrollFormIntoView();
+  CreateWorkout.scrollIntoView(
+    CreateWorkout.createWorkoutSection,
+    "smooth",
+    "start",
+    "start"
+  );
 }
 
 /**

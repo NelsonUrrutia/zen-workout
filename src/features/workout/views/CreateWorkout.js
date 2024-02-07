@@ -173,14 +173,6 @@ class CreateWorkout extends View {
       .join("");
   }
 
-  scrollFormIntoView() {
-    this.createWorkoutSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "center",
-    });
-  }
-
   /**
    * Clears the container for displaying workout blocks
    */
