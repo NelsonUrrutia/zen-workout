@@ -27,6 +27,10 @@ class ActiveWorkout extends View {
     this.startWorkoutBtn.addEventListener("click", handler);
   }
 
+  addHandlerPauseWorkout(handler) {
+    this.pauseWorkoutBtn.addEventListener("click", handler);
+  }
+
   setLoadingState(flag) {
     this.section.dataset.loadingSection = flag;
   }
@@ -44,12 +48,14 @@ class ActiveWorkout extends View {
   }
 
   updateWorkoutTimer(time) {
-    this.workoutTimer.innerHTML = `${time} seconds`;
+    this.workoutTimer.innerHTML = `<p>${time} seconds</p>`;
   }
 
   updateRestingTimer(minutes, seconds) {
-    this.restingTimer.innerHTML = `${minutes ? minutes : "00"} :
-      ${seconds ? seconds : "00"}`;
+    const minutesHTML = minutes ? `${minutes} minutes : ` : "";
+    const secondsHTML = seconds ? `${seconds} seconds` : "00";
+
+    this.restingTimer.innerHTML = `<p>${minutesHTML}${secondsHTML}</p>`;
   }
 
   updateBlockCounter(counter, total) {

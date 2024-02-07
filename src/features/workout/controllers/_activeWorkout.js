@@ -1,4 +1,9 @@
 import { saveActiveWorkoutInSession } from "../models/workout.js";
+import blockRestingTimer from "../models/blockRestingTimer.js";
+import blockWorkingTimer from "../models/blockWorkingTimer.js";
+import setRestingTimer from "../models/setRestingTimer.js";
+import sessionActiveWorkout from "../models/sessionActiveWorkout.js";
+
 import ActiveWorkout from "../views/ActiveWorkout.js";
 
 export function loadActiveWorkout(workout) {
