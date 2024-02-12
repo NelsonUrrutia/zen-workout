@@ -47,12 +47,12 @@ function extractFormData(formData) {
     ...(workoutId && { id: +workoutId }),
     ...(date && { date }),
     name,
-    sets,
-    restingTimeSetsMinutes,
-    restingTimeSetsSeconds,
-    blocks,
-    workingTimeBlocksSeconds,
-    restingTimeBlocksSeconds,
+    sets: +sets,
+    restingTimeSetsMinutes: +restingTimeSetsMinutes,
+    restingTimeSetsSeconds: +restingTimeSetsSeconds,
+    blocks: +blocks,
+    workingTimeBlocksSeconds: +workingTimeBlocksSeconds,
+    restingTimeBlocksSeconds: +restingTimeBlocksSeconds,
     blockSettings,
   };
 }

@@ -72,8 +72,8 @@ function mainTimerFunctions() {
   let blockCounter = 0;
   let restingTime = 15;
   let setRestingTime = restingTime;
-  let blockWorkingTimeCounter = +workingTimeBlocksSeconds;
-  let blockRestingTimeCounter = +restingTimeBlocksSeconds;
+  let blockWorkingTimeCounter = workingTimeBlocksSeconds;
+  let blockRestingTimeCounter = restingTimeBlocksSeconds;
 
   function workoutTimer() {
     while (blockWorkingTimeCounter >= 0) {
@@ -83,7 +83,7 @@ function mainTimerFunctions() {
       if (blockWorkingTimeCounter === 0) {
         blockWorkingTimeCounter = workingTimeBlocksSeconds;
 
-        if (setsCounter === +sets) {
+        if (setsCounter === sets) {
           console.log("Workout ended");
           return;
         }
