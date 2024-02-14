@@ -185,10 +185,10 @@ export const TESTING_WORKOUT_DATA = [
     name: "Martes | Pecho y Espalda",
     sets: 2,
     restingTimeSetsMinutes: 0,
-    restingTimeSetsSeconds: 20,
-    blocks: 2,
-    workingTimeBlocksSeconds: 5,
-    restingTimeBlocksSeconds: 5,
+    restingTimeSetsSeconds: 5,
+    blocks: 5,
+    workingTimeBlocksSeconds: 2,
+    restingTimeBlocksSeconds: 2,
     blockSettings: [
       {
         name: "Press de banca",

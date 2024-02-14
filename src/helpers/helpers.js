@@ -32,3 +32,7 @@ export const getCurrentDate = () => {
 export const getDateNow = () => {
   return Date.now();
 };
+
+export const convertMinuteBasedToSeconds = (minutes, seconds) => {
+  return minutes * 60 + seconds;
+};
