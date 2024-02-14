@@ -186,7 +186,7 @@ export const TESTING_WORKOUT_DATA = [
     sets: 2,
     restingTimeSetsMinutes: 0,
     restingTimeSetsSeconds: 5,
-    blocks: 5,
+    blocks: 2,
     workingTimeBlocksSeconds: 2,
     restingTimeBlocksSeconds: 2,
     blockSettings: [
@@ -197,18 +197,6 @@ export const TESTING_WORKOUT_DATA = [
       {
         name: "Pull-ups",
         order: 1,
-      },
-      {
-        name: "Press inclinado con mancuernas",
-        order: 2,
-      },
-      {
-        name: "Remo con barra T",
-        order: 3,
-      },
-      {
-        name: "Aperturas con polea alta",
-        order: 4,
       },
     ],
   },

@@ -1,3 +1,4 @@
+import { convertMinuteBasedToSeconds } from "../../../helpers/helpers.js";
 import {
   getActiveWorkoutInSession,
   saveActiveWorkoutInSession,
@@ -54,7 +55,6 @@ function startWorkoutHandler() {
 }
 
 function mainTimerFunctions() {
-  debugger;
   const {
     sets,
     restingTimeSetsMinutes,
@@ -64,69 +64,97 @@ function mainTimerFunctions() {
     restingTimeBlocksSeconds,
     blockSettings,
   } = getActiveWorkoutInSession();
-  let setsCounter = 0;
-  let blockCounter = 0;
-  let restingTime = 15;
-  let setRestingTime = restingTime;
-  let blockWorkingTimeCounter = workingTimeBlocksSeconds;
-  let blockRestingTimeCounter = restingTimeBlocksSeconds;
 
-  function workoutTimer() {
-    while (blockWorkingTimeCounter >= 0) {
-      debugger;
-      console.log(`💪🏻 Working ${blockWorkingTimeCounter}`);
-      blockWorkingTimeCounter--;
-      if (blockWorkingTimeCounter === 0) {
-        blockWorkingTimeCounter = workingTimeBlocksSeconds;
+  const setsRestingTimeSeconds = convertMinuteBasedToSeconds(
+    restingTimeSetsMinutes,
+    restingTimeSetsSeconds
+  );
 
-        if (setsCounter === sets) {
-          console.log("Workout ended");
-          return;
-        }
+  let counterSetRestingTime = setsRestingTimeSeconds;
+  let counterSet = 0;
 
-        if (blockCounter === blockSettings.length) {
-          console.log("blocks end");
-          setsCounter++;
-          setRestingTimer();
-          return;
-        }
+  let counterBlockWorkingTime = workingTimeBlocksSeconds;
+  let counterBlockRestingTime = restingTimeBlocksSeconds;
+  let counterBlock = 0;
 
-        blockCounter++;
-        restingTimer();
-        return;
+  function blockTimer() {
+    // Check if sets are completed
+    if (counterSet === sets) {
+      console.log("🏁 Workout Session Ended");
+      counterBlockRestingTime = -1;
+      return;
+    }
+
+    // Checks if the set is completed
+    if (counterBlock === blocks) {
+      counterSet++;
+      counterBlock = 0;
+      counterBlockWorkingTime = workingTimeBlocksSeconds;
+      setRestingTimer();
+      return;
+    }
+
+    while (counterBlockWorkingTime >= 0) {
+      console.log(`💪🏻 ${counterBlockWorkingTime}`);
+      counterBlockWorkingTime--;
+
+      if (counterBlockWorkingTime === 0) {
+        // Set back to default
+        counterBlockWorkingTime = workingTimeBlocksSeconds;
+
+        // Increase counter block
+        counterBlock++;
+
+        // Start block resting timer
+        blockRestingTimer();
       }
     }
   }
 
-  function restingTimer() {
-    while (blockRestingTimeCounter >= 0) {
-      debugger;
-      console.log(`🫁 Resting ${blockRestingTimeCounter} `);
-      blockRestingTimeCounter--;
-      if (blockRestingTimeCounter === 0) {
-        blockRestingTimeCounter = restingTimeBlocksSeconds;
-        console.log(`Ended block ${blockCounter}`);
-        workoutTimer();
-        return;
+  function blockRestingTimer() {
+    // Check if sets are completed
+    if (counterSet === sets) {
+      console.log("🏁 Workout Session Ended");
+      return;
+    }
+
+    // debugger;
+    while (counterBlockRestingTime >= 0) {
+      console.log(`🫁 ${counterBlockRestingTime}`);
+      counterBlockRestingTime--;
+
+      if (counterBlockRestingTime === 0) {
+        // Set back to default
+        counterBlockRestingTime = restingTimeBlocksSeconds;
+
+        if (counterSet === sets) {
+          console.log("🏁 Workout Session Ended");
+          break;
+        }
+
+        // Start block timer
+        blockTimer();
       }
     }
   }
 
   function setRestingTimer() {
-    while (setRestingTime >= 0) {
-      debugger;
-      console.log(`🫁 SETS Resting ${setRestingTime} `);
-      setRestingTime--;
-      if (setRestingTime === 0) {
-        setRestingTime = restingTime;
-        console.log(`Ended set ${setsCounter}`);
-        workoutTimer();
-        return;
+    // debugger;
+    while (counterSetRestingTime >= 0) {
+      console.log(`🫁🫁 ${counterSetRestingTime}`);
+      counterSetRestingTime--;
+
+      if (counterSetRestingTime === 0) {
+        // Set back to default
+        counterSetRestingTime = setsRestingTimeSeconds;
+
+        // Start block timer
+        blockTimer();
       }
     }
   }
 
-  workoutTimer();
+  blockTimer();
 }
 export default function initActiveWorkoutModule() {
   ActiveWorkout.addHandlerStartWorkout(startWorkoutHandler);
