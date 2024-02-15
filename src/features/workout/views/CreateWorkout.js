@@ -115,7 +115,6 @@ class CreateWorkout extends View {
         <div class="block">
             <label for="block-exercise-${index}">#${indexBasedOne} Block exercise </label>
             <input type="text" name="block-exercise-${index}" id="block-exercise-${index}" required />
-            <button data-delete-block>❌</button>
         </div>`;
       }
     );
@@ -167,7 +166,6 @@ class CreateWorkout extends View {
             #${+order + 1} Block exercise 
           </label>
           <input type="text" value="${name}"  name="block-exercise-${order}" id="block-exercise-${order}" required />
-          <button data-delete-block>❌</button>
       </div>`;
       })
       .join("");

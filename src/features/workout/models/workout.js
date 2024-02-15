@@ -94,7 +94,7 @@ export function loadTestingData() {
   try {
     const rawWorkoutsData = localStorage.getItem("workoutsData");
     if (rawWorkoutsData) return;
-    localStorage.setItem("workoutsData", stringifyJSON(TESTING_WORKOUT_DATA));
+    localStorage.setItem("workoutsData", stringifyJSON(TESTING_WORKOUTS_DATA));
   } catch (error) {
     console.log("Error to load testing data");
   }

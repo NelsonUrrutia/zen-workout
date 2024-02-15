@@ -19,6 +19,15 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 
 ### Active workout
 
+1. Add setTimeout to use real seconds
+2. Start using the DOM
+3. Persist progress in session storage
+4. Implement pause workout
+5. Implement continue workout
+6. Implement end workout
+
+_Loop Reference:_
+
 1. User clicks the start button
 2. Workout timer starts
 3. Workout timer ends:

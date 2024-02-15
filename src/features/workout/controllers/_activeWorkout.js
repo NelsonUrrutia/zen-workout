@@ -4,11 +4,15 @@ import {
   saveActiveWorkoutInSession,
 } from "../models/workout.js";
 
-import ActiveWorkout from "../views/ActiveWorkout.js";
+import SessionWorkout from "../views/SessionWorkout.js";
 
+/**
+ * Function to load an active workout into the session
+ * @param {Object} workout
+ */
 export function loadActiveWorkout(workout) {
   try {
-    ActiveWorkout.setLoadingState(true);
+    SessionWorkout.setLoadingState(true);
 
     saveActiveWorkoutInSession(workout);
 
@@ -21,24 +25,24 @@ export function loadActiveWorkout(workout) {
       blockSettings,
     } = workout;
 
-    ActiveWorkout.setActiveWorkoutName(name);
-    ActiveWorkout.updateBlockCounter(0, blocks);
-    ActiveWorkout.updateSetCounter(0, sets);
-    ActiveWorkout.updateWorkoutTimer(workingTimeBlocksSeconds);
-    ActiveWorkout.updateRestingTimer("", restingTimeBlocksSeconds);
-    ActiveWorkout.updateActiveExercise(blockSettings.at(0).name);
-    ActiveWorkout.updateNextExercise(blockSettings.at(1).name);
+    SessionWorkout.setActiveWorkoutName(name);
+    SessionWorkout.updateBlockCounter(0, blocks);
+    SessionWorkout.updateSetCounter(0, sets);
+    SessionWorkout.updateWorkoutTimer(workingTimeBlocksSeconds);
+    SessionWorkout.updateRestingTimer("", restingTimeBlocksSeconds);
+    SessionWorkout.updateActiveExercise(blockSettings.at(0).name);
+    SessionWorkout.updateNextExercise(blockSettings.at(1).name);
 
-    ActiveWorkout.setActiveState(ActiveWorkout.workoutTimer, true);
-    ActiveWorkout.setActiveState(ActiveWorkout.restingTimer, true);
+    SessionWorkout.setActiveState(SessionWorkout.workoutTimer, true);
+    SessionWorkout.setActiveState(SessionWorkout.restingTimer, true);
 
-    ActiveWorkout.setDisableState(ActiveWorkout.startWorkoutBtn, false);
+    SessionWorkout.setDisableState(SessionWorkout.startWorkoutBtn, false);
   } catch (error) {
     console.log(error);
   } finally {
-    ActiveWorkout.setLoadingState(false);
-    ActiveWorkout.scrollIntoView(
-      ActiveWorkout.section,
+    SessionWorkout.setLoadingState(false);
+    SessionWorkout.scrollIntoView(
+      SessionWorkout.section,
       "smooth",
       "start",
       "start"
@@ -46,14 +50,20 @@ export function loadActiveWorkout(workout) {
   }
 }
 
+/**
+ * Handler function to start the workout
+ */
 function startWorkoutHandler() {
-  ActiveWorkout.setDisableState(ActiveWorkout.startWorkoutBtn, true);
-  ActiveWorkout.setDisableState(ActiveWorkout.pauseWorkoutBtn, false);
-  ActiveWorkout.setDisableState(ActiveWorkout.continueWorkoutBtn, false);
-  ActiveWorkout.setDisableState(ActiveWorkout.endWorkoutBtn, false);
+  SessionWorkout.setDisableState(SessionWorkout.startWorkoutBtn, true);
+  SessionWorkout.setDisableState(SessionWorkout.pauseWorkoutBtn, false);
+  SessionWorkout.setDisableState(SessionWorkout.continueWorkoutBtn, false);
+  SessionWorkout.setDisableState(SessionWorkout.endWorkoutBtn, false);
   mainTimerFunctions();
 }
 
+/**
+ * Function containing the main logic for workout timer
+ */
 function mainTimerFunctions() {
   const {
     sets,
@@ -77,6 +87,7 @@ function mainTimerFunctions() {
   let counterBlockRestingTime = restingTimeBlocksSeconds;
   let counterBlock = 0;
 
+  // Loop through the sets and blocks to manage workout progression
   while (counterSet <= sets) {
     // Decrease block's timer
     counterBlockWorkingTime--;
@@ -151,5 +162,5 @@ function mainTimerFunctions() {
 }
 
 export default function initActiveWorkoutModule() {
-  ActiveWorkout.addHandlerStartWorkout(startWorkoutHandler);
+  SessionWorkout.addHandlerStartWorkout(startWorkoutHandler);
 }

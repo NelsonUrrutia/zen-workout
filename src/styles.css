@@ -27,43 +27,43 @@ article {
   overflow: auto;
 }
 
-#active-workout {
+#session-workout {
   position: relative;
   background-color: azure;
   grid-column: 6 / -1;
   grid-row: 1 / -1;
 }
 
-.active-workout-header {
+.session-workout-header {
   display: flex;
   justify-content: space-around;
 }
 
-.active-workout-header div {
+.session-workout-header div {
   text-align: center;
   flex-basis: 40%;
   background-color: aliceblue;
 }
 
-.active-workout-header div[data-is-active="false"] {
+.session-workout-header div[data-is-active="false"] {
   opacity: 0.7;
 }
 
-.active-workout-header p {
+.session-workout-header p {
   font-size: xx-large;
 }
 
-.active-workout-actions {
+.session-workout-actions {
   display: flex;
   justify-content: space-around;
 }
 
-#active-workout[data-loading-section="true"] #active-workout-loading {
+#session-workout[data-loading-section="true"] #session-workout-loading {
   opacity: 1;
   z-index: 1;
 }
 
-#active-workout-loading {
+#session-workout-loading {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,7 +77,7 @@ article {
   z-index: -1;
 }
 
-#active-workout-info {
+#session-workout-info {
   display: flex;
   justify-content: space-around;
   align-items: center;

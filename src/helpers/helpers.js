@@ -33,6 +33,13 @@ export const getDateNow = () => {
   return Date.now();
 };
 
+/**
+ * Converts time from minute-based format to seconds.
+ *
+ * @param {number} minutes - The number of minutes.
+ * @param {number} seconds - The number of seconds.
+ * @returns {number} - Total time in seconds.
+ */
 export const convertMinuteBasedToSeconds = (minutes, seconds) => {
   return minutes * 60 + seconds;
 };
