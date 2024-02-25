@@ -5,7 +5,7 @@ import {
   loadTestingData,
 } from "../models/workout.js";
 import RenderSavedWorkouts from "../views/RenderSavedWorkouts.js";
-import { loadActiveWorkout } from "./_activeWorkout.js";
+import { loadActiveWorkout } from "./_sessionWorkout.js";
 import { populateFormDispatcher } from "./_createWorkout.js";
 
 /**
