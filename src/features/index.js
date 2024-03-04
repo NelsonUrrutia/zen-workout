@@ -1,7 +1,8 @@
-import initSessionWorkoutModule from "./workout/controllers/_sessionWorkout.js";
-import initCreateWorkoutModule from "./workout/controllers/_createWorkout.js";
-import initRenderSavedWorkoutsModule from "./workout/controllers/_renderSavedWorkouts.js";
+import { CreateWorkoutForm } from "./create-workout/create-workout-form.js";
+import { CreateExercisesList } from "./create-workout/create-exercises-list.js";
+import { DisplayWorkoutsList } from "./display-workouts/display-workouts-list.js";
 
-initCreateWorkoutModule();
-initRenderSavedWorkoutsModule();
-initSessionWorkoutModule();
+customElements.define("create-workout-form", CreateWorkoutForm);
+customElements.define("create-exercises-list", CreateExercisesList);
+
+customElements.define("display-workouts-list", DisplayWorkoutsList);
