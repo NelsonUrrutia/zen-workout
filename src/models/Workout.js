@@ -40,7 +40,15 @@ export class Workout {
    * Retrieves all workouts from localStorage.
    * @returns {Promise<Array>} A promise that resolves to the list of all workouts.
    */
-  async getWorkouts() {}
+  async getWorkouts() {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(parseJSON(localStorage.getItem("workouts")));
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 
   /**
    * Retrieves a workout by its ID from localStorage.
