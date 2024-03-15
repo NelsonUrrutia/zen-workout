@@ -31,6 +31,11 @@ export class CreateExercisesList extends HTMLElement {
       "savedWorkout",
       this.clearExercisesContainer.bind(this)
     );
+
+    document.addEventListener(
+      "createExerciseInputsWithContent",
+      this.createExerciseInputsWithContent.bind(this)
+    );
   }
 
   // Lifecycle method called when the element is removed from the DOM
@@ -68,6 +73,16 @@ export class CreateExercisesList extends HTMLElement {
     this.insertNewExerciseInput();
   }
 
+  createExerciseInputsWithContent(event) {
+    const { detail: exercises } = event;
+    this.clearExercisesContainer();
+
+    const markup = exercises
+      .map((exercise) => this.createExercise(exercise))
+      .join("");
+    this.exercisesListContainer.insertAdjacentHTML("beforeend", markup);
+  }
+
   /**
    * Method to insert a new exercise input into the list
    */
@@ -89,12 +104,13 @@ export class CreateExercisesList extends HTMLElement {
    * Method to create the HTML for a new exercise input
    * @returns {TemplateString} Exercise HTML element
    */
-  createExercise() {
+  createExercise(value) {
     return `
       <div class="exercise">
-        <input type="text" name="exercise-${this.exerciseCounter++}" required>
+        <input type="text" ${value && `value=${value}`} name="exercise-${this
+      .exerciseCounter++}" required>
         <button type="button" class="delete-exercise">❌</button>      
-      </div
+      </div>
     `;
   }
 

@@ -4,11 +4,11 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 
 ## TODO:
 
+Gneral try/catch validation
+
 ### Form
 
-1. Remove workout block
-2. Refactor workout block creation
-3. More validation logic
+More validation logic
 
 ### Saved workouts
 
@@ -19,28 +19,10 @@ Sculpt routines with precision. Craft sets, timers, and rests for your fitness s
 
 ### Active workout
 
-1. Add setTimeout to use real seconds
-2. Start using the DOM
 3. Persist progress in session storage
 4. Implement pause workout
 5. Implement continue workout
 6. Implement end workout
-
-_Loop Reference:_
-
-1. User clicks the start button
-2. Workout timer starts
-3. Workout timer ends:
-   Goes back to the default value
-   1. resting block start
-   2. Update Exercise
-   3. Update next exercise
-   4. Update block counter
-4. Resting timer ends, the workout timer starts
-5. When the set is done:
-   1. Update the set counter
-   2. Set resting timer to set's resting timer
-   3. Repeat from the start the exercise
 
 ### Alerts
 
@@ -50,7 +32,6 @@ _Loop Reference:_
 
 ---
 
-- Start making the layout with tailwind css
 - Accessibility check
 - Fav icon
 - Metadata

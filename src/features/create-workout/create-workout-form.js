@@ -28,6 +28,11 @@ export class CreateWorkoutForm extends HTMLElement {
       "submit",
       this.formSubmitEventHandler.bind(this)
     );
+
+    document.addEventListener(
+      "editWorkout",
+      this.editWorkoutEventHandler.bind(this)
+    );
   }
 
   // Lifecycle method called when the element is removed from the DOM
@@ -75,6 +80,33 @@ export class CreateWorkoutForm extends HTMLElement {
     }
   }
 
+  async editWorkoutEventHandler(event) {
+    const { detail: id } = event;
+    const workout = await this.workout.getWorkoutById(+id);
+    this.fillFormInputs(workout);
+  }
+
+  fillFormInputs(workout) {
+    const { id, name, sets, blocks, blockRestTime, blockWorkTime, exercises } =
+      workout;
+
+    const setRestTime = +workout.setRestTime;
+    let minutes = Math.floor(setRestTime / 60);
+    let seconds = setRestTime % 60;
+
+    this.form.querySelector(`#name`).value = name;
+    this.form.querySelector("#sets").value = sets;
+    this.form.querySelector("#blocks").value = blocks;
+    this.form.querySelector("#block-work-time").value = blockWorkTime;
+    this.form.querySelector("#block-rest-time").value = blockRestTime;
+    this.form.querySelector("#id").value = id;
+    this.form.querySelector("#set-resting-minutes").value = minutes;
+    this.form.querySelector("#set-resting-seconds").value = seconds;
+    document.dispatchEvent(
+      new CustomEvent("createExerciseInputsWithContent", { detail: exercises })
+    );
+  }
+
   /**
    * Processes raw form data into a structured model for the Workout class.
    * Validates input and provides error messages.
@@ -103,7 +135,7 @@ export class CreateWorkoutForm extends HTMLElement {
     }
 
     return {
-      id: id || getDateNow(),
+      id: +id || getDateNow(),
       date: date || getCurrentDate(),
       name,
       sets: +sets,
