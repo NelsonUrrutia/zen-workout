@@ -4,6 +4,7 @@ export class DisplayWorkoutsList extends HTMLElement {
   constructor() {
     super();
     this.workout = new Workout();
+    this.loadTestingData = true;
   }
 
   connectedCallback() {
@@ -36,7 +37,7 @@ export class DisplayWorkoutsList extends HTMLElement {
     const deleteWorkout = event.target.closest(".delete-workout");
 
     if (selectWorkout) {
-      const { id } = workoutItem.dataset;
+      const id = +workoutItem.dataset.id;
       document.dispatchEvent(
         new CustomEvent("selectedWorkout", { detail: id })
       );
@@ -44,13 +45,13 @@ export class DisplayWorkoutsList extends HTMLElement {
     }
 
     if (editWorkout) {
-      const { id } = workoutItem.dataset;
+      const id = +workoutItem.dataset.id;
       document.dispatchEvent(new CustomEvent("editWorkout", { detail: id }));
       return;
     }
 
     if (deleteWorkout) {
-      const { id } = workoutItem.dataset;
+      const id = +workoutItem.dataset.id;
       this.deleteWorkout(id);
       return;
     }
@@ -59,6 +60,8 @@ export class DisplayWorkoutsList extends HTMLElement {
   async renderWorkouts() {
     this.setErrorMessage();
     this.clearWorkoutsListContainer();
+
+    if (this.loadTestingData) this.workout.loadTestingData();
     try {
       const workouts = await this.workout.getWorkouts();
       const workoutsMarkup = workouts
@@ -76,7 +79,7 @@ export class DisplayWorkoutsList extends HTMLElement {
   }
 
   async deleteWorkout(id) {
-    await this.workout.deleteWorkoutById(+id);
+    await this.workout.deleteWorkoutById(id);
     this.renderWorkouts();
   }
 

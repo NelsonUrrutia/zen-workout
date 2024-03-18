@@ -1,6 +1,7 @@
 import { Workout } from "../../models/Workout.js";
 import {
   convertMinuteBasedToSeconds,
+  convertSecondBasedToMinutes,
   getCurrentDate,
   getDateNow,
 } from "../../helpers/helpers.js";
@@ -90,9 +91,9 @@ export class CreateWorkoutForm extends HTMLElement {
     const { id, name, sets, blocks, blockRestTime, blockWorkTime, exercises } =
       workout;
 
-    const setRestTime = +workout.setRestTime;
-    let minutes = Math.floor(setRestTime / 60);
-    let seconds = setRestTime % 60;
+    const { minutes, seconds } = convertSecondBasedToMinutes(
+      +workout.setRestTime
+    );
 
     this.form.querySelector(`#name`).value = name;
     this.form.querySelector("#sets").value = sets;

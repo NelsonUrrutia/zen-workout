@@ -1,10 +1,17 @@
 import { parseJSON, stringifyJSON } from "../helpers/helpers.js";
-
+import { TESTING_WORKOUTS_DATA } from "../features/workout/models/testingData.js";
 /**
  * Represents a Workout class for managing workout data.
  */
 export class Workout {
   constructor() {}
+
+  /**
+   * Loads testing  workouts data
+   */
+  loadTestingData() {
+    localStorage.setItem("workouts", stringifyJSON(TESTING_WORKOUTS_DATA));
+  }
 
   /**
    * Saves a new workout to localStorage.
@@ -95,6 +102,21 @@ export class Workout {
    * @returns {Promise<Array>} A promise that resolves to the list of matching workouts.
    */
   async searchWorkout(param, value) {}
+  /**
+   * Saves a workout to session.
+   * @param {Object} workout - The  workout  to save in a session.
+   */
+  saveSessionWorkout(workout) {
+    sessionStorage.setItem("sessionWorkout", stringifyJSON(workout));
+  }
+
+  /**
+   *  Get the workout saved in session storage
+   *  @returns {Object} Workout object saved in session
+   */
+  getSessionWorkout() {
+    return JSON.parse(sessionStorage.getItem("sessionWorkout"));
+  }
 
   /**
    * Sorts the workouts based on a specified criteria.
@@ -102,11 +124,4 @@ export class Workout {
    * @returns {Promise<Array>} A promise that resolves to the sorted list of workouts.
    */
   async sortWorkouts(sortBy) {}
-
-  /**
-   * Saves a workout to session.
-   * @param {string} workoutId - The ID of the workout for which to save a session.
-   * @returns {Promise<Array>} A promise that resolves to the updated list of workouts.
-   */
-  async saveSessionWorkout(workoutId) {}
 }

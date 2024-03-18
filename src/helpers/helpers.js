@@ -43,3 +43,15 @@ export const getDateNow = () => {
 export const convertMinuteBasedToSeconds = (minutes, seconds) => {
   return minutes * 60 + seconds;
 };
+
+/**
+ * Converts time from second-based format to minutes
+ *
+ * @param {Int} second - The number of seconds
+ * @returns {Object} - The minutes and seconds
+ */
+export const convertSecondBasedToMinutes = (second) => {
+  const minutes = Math.floor(second / 60);
+  const seconds = second % 60;
+  return { minutes, seconds };
+};
