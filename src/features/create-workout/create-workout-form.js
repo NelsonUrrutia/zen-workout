@@ -145,8 +145,8 @@ export class CreateWorkoutForm extends HTMLElement {
         +setRestingSeconds
       ),
       blocks: +blocks,
-      blockWorkTime,
-      blockRestTime,
+      blockWorkTime: +blockWorkTime,
+      blockRestTime: +blockRestTime,
       exercises: Object.values(exercises),
     };
   }
