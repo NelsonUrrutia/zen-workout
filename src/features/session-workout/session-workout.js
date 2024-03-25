@@ -4,15 +4,40 @@ export class SessionWorkout extends HTMLElement {
   constructor() {
     super();
     this.workout = new Workout();
+    this.sessionWorkout = {
+      isPaused: false,
+      sets: 0,
+      setRestTime: 0,
+      blocks: 0,
+      blockWorkTime: 0,
+      blockRestTime: 0,
+      exercises: [],
+      setsCounter: 0,
+      setRestTimeCounter: 0,
+      blocksCounter: 0,
+      blockWorkTimeCounter: 0,
+      blockRestTimeCounter: 0,
+    };
   }
+
   connectedCallback() {
     this.section = this.querySelector("#session-workout");
     this.sessionWorkoutContent = this.section.querySelector(
       "#session-workout-content"
     );
 
-    this.starWorkoutBtn = this.querySelector("#start-workout");
+    this.startWorkoutBtn = this.querySelector("#start-workout");
+    this.startWorkoutBtn.addEventListener(
+      "click",
+      this.startWorkoutEventHandler.bind(this)
+    );
+
     this.stopWorkoutBtn = this.querySelector("#stop-workout");
+    this.stopWorkoutBtn.addEventListener(
+      "click",
+      this.stopWorkoutEventHandler.bind(this)
+    );
+
     document.addEventListener(
       "selectedWorkout",
       this.selectedWorkoutEventHandler.bind(this)
@@ -26,10 +51,21 @@ export class SessionWorkout extends HTMLElement {
     this.renderSessionWorkout(id);
   }
 
+  startWorkoutEventHandler(event) {
+    const btn = event.target.closest("#start-workout");
+    if (!btn) return;
+  }
+
+  stopWorkoutEventHandler(event) {
+    const btn = event.target.closest("#stop-workout");
+    if (!btn) return;
+  }
+
   async renderSessionWorkout(id) {
     const workout = await this.workout.getWorkoutById(id);
+    this.setSessionWorkout(workout);
     const { name, sets, blocks, blockWorkTime, exercises } = workout;
-    this.workout.saveSessionWorkout(workout);
+    this.workout.saveSessionWorkout(this.sessionWorkout);
 
     const template = `
       <h3>${name}</h3>
@@ -44,5 +80,23 @@ export class SessionWorkout extends HTMLElement {
     `;
 
     this.sessionWorkoutContent.innerHTML = template;
+  }
+
+  setSessionWorkout(workout) {
+    const {
+      sets,
+      setRestTime,
+      blocks,
+      blockWorkTime,
+      blockRestTime,
+      exercises,
+    } = workout;
+
+    this.sessionWorkout.sets = sets;
+    this.sessionWorkout.setRestTime = setRestTime;
+    this.sessionWorkout.blocks = blocks;
+    this.sessionWorkout.blockWorkTime = blockWorkTime;
+    this.sessionWorkout.blockRestTime = blockRestTime;
+    this.sessionWorkout.exercises = exercises;
   }
 }
