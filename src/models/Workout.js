@@ -1,5 +1,5 @@
 import { parseJSON, stringifyJSON } from "../helpers/helpers.js";
-import { TESTING_WORKOUTS_DATA } from "../features/workout/models/testingData.js";
+import { TESTING_WORKOUTS_DATA } from "./testingData.js";
 /**
  * Represents a Workout class for managing workout data.
  */
