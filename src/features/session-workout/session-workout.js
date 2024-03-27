@@ -4,8 +4,9 @@ export class SessionWorkout extends HTMLElement {
   constructor() {
     super();
     this.workout = new Workout();
+    this.timerId = 0;
+    this.timerIsPaused = false;
     this.sessionWorkout = {
-      isPaused: false,
       sets: 0,
       setRestTime: 0,
       blocks: 0,
@@ -26,17 +27,7 @@ export class SessionWorkout extends HTMLElement {
       "#session-workout-content"
     );
 
-    this.startWorkoutBtn = this.querySelector("#start-workout");
-    this.startWorkoutBtn.addEventListener(
-      "click",
-      this.startWorkoutEventHandler.bind(this)
-    );
-
-    this.stopWorkoutBtn = this.querySelector("#stop-workout");
-    this.stopWorkoutBtn.addEventListener(
-      "click",
-      this.stopWorkoutEventHandler.bind(this)
-    );
+    this.section.addEventListener("click", this.sectionEventHandler.bind(this));
 
     document.addEventListener(
       "selectedWorkout",
@@ -44,21 +35,111 @@ export class SessionWorkout extends HTMLElement {
     );
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.section.removeEventListener(
+      "click",
+      this.sectionEventHandler.bind(this)
+    );
+  }
+
+  sectionEventHandler(event) {
+    const startBtn = event.target.closest("#start-workout");
+    const stopBtn = event.target.closest("#stop-workout");
+
+    if (startBtn) {
+      this.timerIsPaused = false;
+      this.sessionWorkoutTimerController();
+      return;
+    }
+
+    if (stopBtn) {
+      console.log("stop");
+      this.timerIsPaused = true;
+      return;
+    }
+  }
+
+  sessionWorkoutTimerController() {
+    if (!this.timerIsPaused) this.blockWorkTimer();
+  }
+
+  blockWorkTimer() {
+    this.sessionWorkout.blockWorkTimeCounter--;
+    this.updateTimer(this.sessionWorkout.blockWorkTimeCounter);
+
+    if (this.sessionWorkout.blockWorkTimeCounter <= 0) {
+      this.sessionWorkout.blocksCounter += 1;
+      this.sessionWorkout.blockWorkTimeCounter =
+        this.sessionWorkout.blockWorkTime;
+
+      this.updateBlockCounter(this.sessionWorkout.blocksCounter);
+
+      if (this.sessionWorkout.blocksCounter < this.sessionWorkout.blocks) {
+        this.updateExercise(
+          this.sessionWorkout.exercises[this.sessionWorkout.blocksCounter]
+        );
+        setTimeout(this.blockRestTimer.bind(this), 1500);
+        return;
+      }
+
+      if (this.sessionWorkout.blocksCounter === this.sessionWorkout.blocks) {
+        this.sessionWorkout.setsCounter += 1;
+        this.updateSetCounter(this.sessionWorkout.setsCounter);
+        this.updateExercise(this.sessionWorkout.exercises[0]);
+
+        if (this.sessionWorkout.setsCounter < this.sessionWorkout.sets) {
+          setTimeout(() => {
+            this.sessionWorkout.blocksCounter = 0;
+            this.updateBlockCounter(0);
+          }, 2000);
+
+          setTimeout(this.setRestTimer.bind(this), 3000);
+          return;
+        }
+
+        if (this.sessionWorkout.setsCounter === this.sessionWorkout.sets) {
+          setTimeout(() => {
+            this.updateBlockCounter(0);
+            this.updateExercise("");
+            this.updateSetCounter(0);
+            alert("Finished Workout 🎉🎊");
+          }, 3000);
+          return;
+        }
+      }
+    }
+    setTimeout(this.blockWorkTimer.bind(this), 1000);
+  }
+
+  blockRestTimer() {
+    this.sessionWorkout.blockRestTimeCounter--;
+    this.updateTimer(this.sessionWorkout.blockRestTimeCounter);
+
+    if (this.sessionWorkout.blockRestTimeCounter === 0) {
+      this.sessionWorkout.blockRestTimeCounter =
+        this.sessionWorkout.blockRestTime;
+      setTimeout(this.blockWorkTimer.bind(this), 3000);
+      return;
+    }
+    setTimeout(this.blockRestTimer.bind(this), 1000);
+  }
+
+  setRestTimer() {
+    this.sessionWorkout.setRestTimeCounter--;
+    this.updateTimer(this.sessionWorkout.setRestTimeCounter);
+
+    if (this.sessionWorkout.setRestTimeCounter === 0) {
+      this.sessionWorkout.setRestTimeCounter = this.sessionWorkout.setRestTime;
+      setTimeout(this.blockWorkTimer.bind(this), 3000);
+      return;
+    }
+
+    setTimeout(this.setRestTimer.bind(this), 1000);
+  }
 
   selectedWorkoutEventHandler(event) {
     const { detail: id } = event;
     this.renderSessionWorkout(id);
-  }
-
-  startWorkoutEventHandler(event) {
-    const btn = event.target.closest("#start-workout");
-    if (!btn) return;
-  }
-
-  stopWorkoutEventHandler(event) {
-    const btn = event.target.closest("#stop-workout");
-    if (!btn) return;
   }
 
   async renderSessionWorkout(id) {
@@ -71,8 +152,8 @@ export class SessionWorkout extends HTMLElement {
       <h3>${name}</h3>
       <p id="timer">${blockWorkTime}</p>
       <p id="exercise">${exercises.at(0)}</p>
-      <p id="block-status"><strong>Completed blocks: </strong>0/${blocks}</p>
-      <p id="set-status"><strong>Completed sets: </strong> 0/${sets}</p>
+      <p><strong>Completed blocks: </strong> <span id="block-counter">0</span>/${blocks}</p>
+      <p><strong>Completed sets: </strong> <span id="set-counter">0</span>/${sets}</p>
       <div>
         <button id="start-workout">Start | Resume workout</button>
         <button id="stop-workout">Stop workout</button>
@@ -98,5 +179,25 @@ export class SessionWorkout extends HTMLElement {
     this.sessionWorkout.blockWorkTime = blockWorkTime;
     this.sessionWorkout.blockRestTime = blockRestTime;
     this.sessionWorkout.exercises = exercises;
+
+    this.sessionWorkout.setRestTimeCounter = setRestTime;
+    this.sessionWorkout.blockWorkTimeCounter = blockWorkTime;
+    this.sessionWorkout.blockRestTimeCounter = blockRestTime;
+  }
+
+  updateTimer(time) {
+    this.section.querySelector("#timer").innerHTML = time;
+  }
+
+  updateExercise(exercise) {
+    this.section.querySelector("#exercise").innerHTML = exercise;
+  }
+
+  updateBlockCounter(counter) {
+    this.section.querySelector("#block-counter").innerHTML = counter;
+  }
+
+  updateSetCounter(counter) {
+    this.section.querySelector("#set-counter").innerHTML = counter;
   }
 }
