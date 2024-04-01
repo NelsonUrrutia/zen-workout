@@ -1,0 +1,130 @@
+/* COMPONENTS | IMPORTS */
+@import url(./features/create-workout/create-workout.css);
+@import url(./features/display-workouts/display-workouts.css);
+@import url(./features/session-workout/session-workout.css);
+
+/* COLOR PALETTE */
+
+:root {
+  --white-500: #fdfffc;
+  --white-600: #e0e0e0;
+  --black-500: #020100;
+  --red-500: #ed1c24;
+  --blue-500: #235789;
+  --yellow-500: #f1d302;
+  --green-500: #00b846;
+  --purple-500: #5300b8;
+}
+
+/*RESET DEFAULT STYLES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Ubuntu, "Trebuchet MS", sans-serif;
+  line-height: 1;
+}
+
+body {
+  color: var(--black-500);
+  background-color: var(--white-600);
+}
+
+/* HEADINGS | h1, h2, h3 */
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3.6rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+/* CONTENT | p, a, ul, small, span, button */
+
+p,
+ul,
+a,
+span,
+label {
+  font-size: 1.4rem;
+}
+
+small {
+  font-size: 1.2rem;
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid var(--black-500);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+
+button.primary {
+  background-color: var(--blue-500);
+  color: var(--white-500);
+}
+
+button.warning {
+  background-color: var(--yellow-500);
+}
+
+button.danger {
+  background-color: var(--red-500);
+  color: var(--white-500);
+}
+
+/* ARTICLE */
+article {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--white-500);
+  border-radius: 0.5rem;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 35%;
+  padding: 1rem;
+}
+
+.right-column {
+  width: 65%;
+  padding: 1rem;
+}
+
+/* HEADER */
+header {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* FOOTER  */
+footer {
+  text-align: center;
+  padding: 1rem;
+}

@@ -103,8 +103,8 @@ export class DisplayWorkoutsList extends HTMLElement {
         </div>
       </div>
       <button class="select-workout">Select Workout</button>
-      <button class="edit-workout">Edit Workout</button>
-      <button class="delete-workout">Delete Workout</button>
+      <button class="edit-workout warning">Edit Workout</button>
+      <button class="delete-workout danger">Delete Workout</button>
     </div>`;
   }
 

@@ -106,7 +106,7 @@ export class CreateExercisesList extends HTMLElement {
    */
   createExercise(value) {
     return `
-      <div class="exercise">
+      <div class="exercise form-group half">
         <input type="text" ${value && `value=${value}`} name="exercise-${this
       .exerciseCounter++}" required>
         <button type="button" class="delete-exercise">❌</button>      

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles.css" />
     <script type="module" src="./src/features/index.js"></script>
     <title>Zen Workout</title>
   </head>
@@ -13,127 +14,134 @@
 
     <main>
       <article>
-        <create-workout-form>
-          <section id="create-workout-form">
-            <h2>Create Workout</h2>
-            <form>
-              <div>
-                <label for="name">Workout name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  title="Workout name"
-                  tabindex="1"
-                  autofocus
-                  required
-                />
-              </div>
-              <div>
-                <label for="sets">Number of sets</label>
-                <input
-                  type="number"
-                  name="sets"
-                  id="sets"
-                  min="1"
-                  title="Sets"
-                  tabindex="2"
-                  required
-                />
-              </div>
-              <div>
-                <p>Resting time between sets</p>
-                <label for="set-resting-minutes">Minutes</label>
-                <input
-                  type="number"
-                  name="set-resting-minutes"
-                  id="set-resting-minutes"
-                  title="Minutes"
-                  min="0"
-                  max="5"
-                  tabindex="3"
-                />
-                <label for="set-resting-seconds">Seconds</label>
-                <input
-                  type="number"
-                  name="set-resting-seconds"
-                  id="set-resting-seconds"
-                  min="0"
-                  max="59"
-                  title="Seconds"
-                  tabindex="4"
-                />
-              </div>
+        <div class="left-column">
+          <create-workout-form>
+            <section id="create-workout-form">
+              <h2>Create Workout</h2>
+              <form>
+                <div class="form-group large">
+                  <label for="name">Workout name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    title="Workout name"
+                    tabindex="1"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="form-group half">
+                  <label for="sets">Number of sets</label>
+                  <input
+                    type="number"
+                    name="sets"
+                    id="sets"
+                    min="1"
+                    title="Sets"
+                    tabindex="2"
+                    required
+                  />
+                </div>
+                <div class="form-group col-inputs">
+                  <div class="form-group half">
+                    <p class="form-group-p">Resting time between sets</p>
+                    <label for="set-resting-minutes">Minutes</label>
+                    <input
+                      type="number"
+                      name="set-resting-minutes"
+                      id="set-resting-minutes"
+                      title="Minutes"
+                      min="0"
+                      max="5"
+                      tabindex="3"
+                    />
+                  </div>
 
-              <div>
-                <label for="blocks">Blocks</label>
-                <input
-                  type="number"
-                  name="blocks"
-                  id="blocks"
-                  min="1"
-                  title="Blocks"
-                  tabindex="5"
-                  required
-                />
-              </div>
+                  <div class="form-group half">
+                    <label for="set-resting-seconds">Seconds</label>
+                    <input
+                      type="number"
+                      name="set-resting-seconds"
+                      id="set-resting-seconds"
+                      min="0"
+                      max="59"
+                      title="Seconds"
+                      tabindex="4"
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <label for="block-work-time">Block work time (seconds)</label>
-                <input
-                  type="number"
-                  name="block-work-time"
-                  id="block-work-time"
-                  required
-                  tabindex="6"
-                  title="Block work time"
-                  min="15"
-                />
-              </div>
+                <div class="form-group half">
+                  <label for="blocks">Number Blocks</label>
+                  <input
+                    type="number"
+                    name="blocks"
+                    id="blocks"
+                    min="1"
+                    title="Blocks"
+                    tabindex="5"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label for="block-rest-time">Block rest time (seconds)</label>
-                <input
-                  type="number"
-                  name="block-rest-time"
-                  id="block-rest-time"
-                  title="Block rest time"
-                  min="15"
-                  tabindex="7"
-                  required
-                />
-              </div>
-              <create-exercises-list>
-                <p><strong>Exercises</strong></p>
-                <div id="exercises-list-container"></div>
-                <button type="button" id="add-exercise">Add exercise</button>
-              </create-exercises-list>
+                <div class="form-group half">
+                  <label for="block-work-time">Block work time (seconds)</label>
+                  <input
+                    type="number"
+                    name="block-work-time"
+                    id="block-work-time"
+                    required
+                    tabindex="6"
+                    title="Block work time"
+                    min="15"
+                  />
+                </div>
 
-              <input type="hidden" name="id" id="id" />
-              <p id="error-message"></p>
-              <div>
-                <button type="submit">Save workout</button>
-                <button type="reset">Clear</button>
-              </div>
-            </form>
-          </section>
-        </create-workout-form>
+                <div class="form-group half">
+                  <label for="block-rest-time">Block rest time (seconds)</label>
+                  <input
+                    type="number"
+                    name="block-rest-time"
+                    id="block-rest-time"
+                    title="Block rest time"
+                    min="15"
+                    tabindex="7"
+                    required
+                  />
+                </div>
+                <create-exercises-list>
+                  <p class="form-group-p"><strong>Exercises</strong></p>
+                  <div id="exercises-list-container"></div>
+                  <button type="button" id="add-exercise">Add exercise</button>
+                </create-exercises-list>
 
-        <display-workouts-list>
-          <section id="display-workouts-list">
-            <h2>Workouts</h2>
-            <p id="loading-message">Loading workouts...</p>
-            <div id="workouts-list"></div>
-            <p id="display-workouts-list-error-message"></p>
-          </section>
-        </display-workouts-list>
-
-        <session-workout>
-          <section id="session-workout">
-            <h2>Session Workout</h2>
-            <div id="session-workout-content" data-workout-status=""></div>
-          </section>
-        </session-workout>
+                <input type="hidden" name="id" id="id" />
+                <p id="error-message"></p>
+                <div class="form-actions">
+                  <button type="submit" class="primary">Save workout</button>
+                  <button type="reset">Clear</button>
+                </div>
+              </form>
+            </section>
+          </create-workout-form>
+          <display-workouts-list>
+            <section id="display-workouts-list">
+              <h2>Workouts</h2>
+              <p id="loading-message">Loading workouts...</p>
+              <div id="workouts-list"></div>
+              <p id="display-workouts-list-error-message"></p>
+            </section>
+          </display-workouts-list>
+        </div>
+        <div class="right-column">
+          <session-workout>
+            <section id="session-workout">
+              <h2>Session Workout</h2>
+              <div id="session-workout-content" data-workout-status=""></div>
+            </section>
+          </session-workout>
+        </div>
       </article>
     </main>
     <footer>

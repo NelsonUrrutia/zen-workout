@@ -43,6 +43,7 @@ export class SessionWorkout extends HTMLElement {
   }
 
   sectionEventHandler(event) {
+    this.timerContainer = this.section.querySelector(".timer-container");
     const startBtn = event.target.closest("#start-workout");
     const stopBtn = event.target.closest("#stop-workout");
 
@@ -64,6 +65,8 @@ export class SessionWorkout extends HTMLElement {
   }
 
   blockWorkTimer() {
+    this.timerContainer.classList.remove("resting");
+    this.timerContainer.classList.add("work-timer");
     this.sessionWorkout.blockWorkTimeCounter--;
     this.updateTimer(this.sessionWorkout.blockWorkTimeCounter);
 
@@ -112,6 +115,9 @@ export class SessionWorkout extends HTMLElement {
   }
 
   blockRestTimer() {
+    this.timerContainer.classList.add("resting");
+    this.timerContainer.classList.remove("work-timer");
+
     this.sessionWorkout.blockRestTimeCounter--;
     this.updateTimer(this.sessionWorkout.blockRestTimeCounter);
 
@@ -125,6 +131,8 @@ export class SessionWorkout extends HTMLElement {
   }
 
   setRestTimer() {
+    this.timerContainer.classList.add("resting");
+
     this.sessionWorkout.setRestTimeCounter--;
     this.updateTimer(this.sessionWorkout.setRestTimeCounter);
 
@@ -150,13 +158,17 @@ export class SessionWorkout extends HTMLElement {
 
     const template = `
       <h3>${name}</h3>
+      <div class="timer-container">
       <p id="timer">${blockWorkTime}</p>
+      </div>
       <p id="exercise">${exercises.at(0)}</p>
-      <p><strong>Completed blocks: </strong> <span id="block-counter">0</span>/${blocks}</p>
-      <p><strong>Completed sets: </strong> <span id="set-counter">0</span>/${sets}</p>
+      <ul>
+        <li><strong>Completed blocks: </strong> <span id="block-counter">0</span>/${blocks}</li>
+        <li><strong>Completed sets: </strong> <span id="set-counter">0</span>/${sets}</li>
+      </ul>
       <div>
-        <button id="start-workout">Start | Resume workout</button>
-        <button id="stop-workout">Stop workout</button>
+        <button id="start-workout" class="primary">Start | Resume workout</button>
+        <button id="stop-workout" class="warning">Stop workout</button>
        </div>
     `;
 
